@@ -1,0 +1,733 @@
+{
+    "fr" :
+    [
+        {
+        "id" : 1,
+        "names" : "Alphonse-Willy Ngana",
+        "role" : "Cofondateur & Directeur General",
+        "facebook" : "",
+        "twitter" : "",
+        "instagram" : "",
+        "linkedin" : "https://www.linkedin.com/in/a-willy-ngana-mabiala-6b54267",
+        "assets" :
+        [
+            {
+                "asset1" : "Administrateur Directeur Général & Co-Fondateur, Kinshasa & Amsterdam",
+                "asset2" : "Entrepreneur, fondateurs et administrateurs de sociétés, ayant un leadership fort et un track record dans le redressement et la transformation des entreprises en vue d'une croissance durable et une profitabilité en particulier dans les entreprises des secteurs d'agro-alimentaires, de manufacture et services financiers. Son leadership dans la stratégie de relations publiques, la défense des intérêts privés et gouvernementaux ont permis d'accélérer les performances des entreprises. Assurer le plaidoyer avec insistance, en particulier sur la stratégie, la croissance, la durabilité et la gouvernance, les politiques publiques, le développement économique et l'efficacité du Conseil d'Administration tant d'organisations que des personnes est sa passion.",
+                "asset3" : "",
+                "asset4" : {
+                    "content1" : "",
+                    "list_item_1" : "",
+                    "list_item_2" : "",
+                    "list_item_3" : "",
+                    "list_item_4" : "",
+                    "list_item_5" : "",
+                    "list_item_6" : "",
+                    "content2" : "",
+                    "content3" : "",
+                    "content4" : ""
+                }
+            },
+            {
+                "asset1" : "Willy NGANA a, à son actif, 19 années d'une expérience riche dans le management à l'international, spécialement en Afrique et moyen orient, mais aussi en Europe Occidentale. Il possède également une solide expérience dans la direction générale, la direction financière, d'audit interne, gestion de risque et, une grande expérience dans le Conseil d'Administration à la fois d'entreprises privées et publiques et dans les organisations non gouvernementales.",
+                "asset2" : "Alphonse Willy est doté d'une expérience et d'une compréhension approfondie sur les enjeux et dynamique économique et social des pays, sur les politiques fiscales et de programme de développement économique particulièrement en Afrique subsaharienne. Il est résiliant et passionné d'apporter et de transformer toute organisation dans laquelle il est, Alphonse Willy a fait preuve d'une forte capacité de leadership dans le redressement d'entreprise, le lancement tout comme l'introduction en bourse, la gestion de crise et environnementale, sociale et la gouvernance. Il est actuellement Président du Conseil d'Administration de FBN Banque RDC.",
+                "asset3" : "",
+                "asset4" : {
+                    "content1" : "",
+                    "list_item_1" : "",
+                    "list_item_2" : "",
+                    "list_item_3" : "",
+                    "list_item_4" : "",
+                    "list_item_5" : "",
+                    "list_item_6" : "",
+                    "content2" : "",
+                    "content3" : "",
+                    "content4" : ""
+                }
+            }
+        ],
+        "experience" :
+        [
+            {
+                "company" : "Heinekein International Group",
+                "role" : "Directeur du développement de projets d'affaires pour la zone Afrique et moyen orient, Amsterdam, Hollande",
+                "tasks" : null
+            },
+            {
+                "company" : "Sierra Leone Brewery LTD",
+                "role" : "Administrateur Directeur Général/Directeur pays, Freetown, Sierra Leone",
+                "tasks" : null
+            },
+            {
+                "company" : "Bralirwa SA",
+                "role" : "Directeur Financier, Kigali, Rwanda",
+                "tasks" : null
+            },
+            {
+                "company" : "Bourse du Rwanda",
+                "role" : "Création de la Bourse du Rwanda par l'introduction en bourse (IPO) de la Bralirwa à Kigali, Rwanda",
+                "tasks" : null
+            },
+            {
+                "company" : "Millenium Challenge Corporation USA (Sierra Leone Unit)",
+                "role" : "Administrateur indépendant, Freetown Sierra Leone",
+                "tasks" : null
+            },
+            {
+                "company" : "Chambre de Commerce de Sierra Leone",
+                "role" : "Membre du Conseil, Freetown Sierra Leone",
+                "tasks" : null
+            }
+        ],
+        "diplomas" :
+        [
+            {
+                "diploma" : "Master en Economie, Institut Supérieur de Commerce, Kinshasa, RDC"
+            },
+            {
+                "diploma" : "INSEAD France, Leadership IMAC et General Manager Training"
+            },
+            {
+                "diploma" : "Harvard Business School USA, Leadership"
+            },
+            {
+                "diploma" : "IMD Lausanne Switzerland, High Effective Board of Director"
+            }
+        ],
+        "expertises" :
+        [
+            {
+                "expertise" : "Directeur Général et Directeur Financier"
+            },
+            {
+                "expertise" : "Conseil d'Administration"
+            },
+            {
+                "expertise" : "Stratégie, Redressement, Transformation, Changement d'organisation,  Innovation et produits"
+            },
+            {
+                "expertise" : "Gestion de risque, Audit interne & contrôle internes"
+            },
+            {
+                "expertise" : "Relations Publiques : Public Affairs & lobbying"
+            },
+            {
+                "expertise" : "Banque"
+            },
+            {
+                "expertise" : "Organisation Non Gouvernementale"
+            },
+            {
+                "expertise" : "Environnement Social & Gouvernance"
+            },
+            {
+                "expertise" : "Gestion de Crise et Continuité des Affaires"
+            }
+        ],
+        "work_countries" :
+        [
+            {
+                "region" : "Europe",
+                "countries" : "Hollande, France, Espagne, Irlande, Italie"
+            },
+            {
+                "region" : "Afrique & Moyen orient",
+                "countries" : "RDC, Egypte, Tunisie, Algérie, Côte d'Ivoire, Sierra Leone, Nigéria, Ethiopie, Rwanda, Burundi, Angola, Namibie, République d'Afrique du Sud, Liban, Arabie Saoudite"
+            },
+            {
+                "region" : "Asie",
+                "countries" : "Nouvelle Calédonie"
+            },
+            {
+                "region" : "Antilles",
+                "countries" : "Guadeloupe et Martinique"
+            }
+        ],
+        "picture" : "assets/img/team/member-1.jpg"
+        },
+        {
+        "id" : 2,
+        "names" : "René Kungana Kola",
+        "role" : "Directeur de Transformation Digitale",
+        "facebook" : "https://www.facebook.com/rene.k.kola?mibextid=LQQJ4d",
+        "twitter" : "https://twitter.com/KunganaKolaRene",
+        "instagram" : "",
+        "linkedin" : "https://www.linkedin.com/in/rene-kungana-kola-28682097",
+        "assets" :
+        [
+            {
+                "asset1" : "KUNGANA KOLA René possède plus de 30 ans d'expérience dans la transformation digitale dans la société Heineken International, principalement dans le pilotage d'implémentation des projets des systèmes d'information de gestion (ERP – Entreprise Resource Planning ou Progiciel de gestion intégré) et le développement du Business en Afrique. Il parle couramment le Français et l'Anglais et, il a vécu et travaillé dans des nombreux pays d'Afrique, tels que le RD Congo, Nigeria, l'Éthiopie, la Sierra Leone, le Rwanda, le Burundi, la Côte d'Ivoire et le Tchad.",
+                "asset2" : "Dans sa carrière, il a une forte expérience dans l'implémentation des progiciels (1) SAP- Human Resource Success factor, (2) SAGE – Paie & Gestion du personnel, (3) Microsoft Dynamics Navision : Achat, Vente, Stock, Fabrication et contrôle qualité, Gestion des équipements, Comptabilité & Finance. (4) Odoo Entreprise : Achat, Vente, Stock, Production, Gestion des équipements, Comptabilité & Finance, Gestion du personnel, etc.",
+                "asset3" : "Il a exercé entre autres (1) la fonction de consultant SAP MyHR et SAGE Paie de 2019 à 2021 (2) le poste de Senior IT Project Manager depuis mars 2017. Avant ce poste il a été Chef de Project Finance et Développement à Heineken Sierra Leone Brewery en 2016, il a conduit avec succès l'amélioration de la gestion, les Méthodes et Procédures et l'implémentation Microsoft Dynamics Navision 2013 et leurs outils de reporting au sein de cette l'entreprise. Il a assisté et formé les employés dans la mise en œuvre de l'exploitation l'informatique et dans l'organisation des Finances.",
+                "asset4" : {
+                    "content1" : "Avant le rôle ci-dessus, il était membre de l'équipe de Heineken change Team, où il a joué un rôle clé durant l'implémentation et la mise en œuvre, et la formation sur Microsoft Dynamics Navision dans Heineken en Afrique sub-saharienne (6 pays) :",
+                    "list_item_1" : "Heineken BRARUDI au BURUNDI 2 brasseries ;",
+                    "list_item_2" : "Heineken BRALIRWA au RWANDA 2 brasseries ;",
+                    "list_item_3" : "Heineken BRALIMA en RD Congo 6 brasseries et 1 usine d'embouteillage ;",
+                    "list_item_4" : "Brasserie Heineken SIERRA LEONE en Sierra Leone 1 brasserie ;",
+                    "list_item_5" : "Heineken Consolidated Breweries Ltd au NIGERIA 6 brasseries ;",
+                    "list_item_6" : "Heineken Share Compagnies en Éthiopie 3 brasseries et plusieurs centres de distributions.",
+                    "content2" : "Auparavant, il a été consultant fonctionnel et technique chez Heineken TCHAD, il a conduit avec succès l'implémentation système d'information Heineken Africa (ISHA), et aussi Heineken Standard Accounting System (SCAN – SCOA) au TCHAD et en SIERRA LEONE.",
+                    "content3" : "Avant de rejoindre Heineken en 1988, il a été assistant chef de projet Approvisionnement à l'Office National des transports (ONATRA) en RD Congo, où il a eu la charge de l'Organisation, les Méthodes et Procédures, comptabilité et Calcul prix de revient.",
+                    "content4" : "Il a été également le responsable du planning des effectifs aux Ressources humaine– à l'Office National des Postes et Télécommunication du Zaïre (ONPTZ) en RD Congo."
+                }
+            }
+        ],
+        "experience" :
+        [
+            {
+                "company" : "BRALIMA SA & BOUKIN SA",
+                "role" : "Senior IT Project Manager BRALIMA SA & BOUKIN SA",
+                "tasks" : [
+                    {"task" : "Gestion de Projets Informatiques complexes et multidisciplinaires"},
+                    {"task" : "Conseiller en Stratégie Informatique"},
+                    {"task" : "Conseiller en Organisation Informatique de Bralima et Boukin"},
+                    {"task" : "Conseiller en Technologie Informatique"},
+                    {"task" : "Conseiller en Gestion de Services Informatiques"},
+                    {"task" : "Support en Informatique"},
+                    {"task" : "Formateur en Informatique"}
+                ]
+            },
+            {
+                "company" : "Sierra Leone Brewery Ltd",
+                "role" : "Chef de projet MS Dynamics Navision et Finance Development Manager à Heineken Sierra Leone",
+                "tasks" : [
+                    {"task" : "Améliorer les Méthodes et procédures selon Heineken"},
+                    {"task" : "Implémentation du contrôle interne et Réconciliation des comptes"},
+                    {"task" : "Implémentation, support, formation des utilisateurs sur le suivi et maitrise des coûts"},
+                    {"task" : "Combler les insuffisances du personnel local"},
+                    {"task" : "Améliorer le reporting TOPS (Technical Organisation Processus and Security)"},
+                    {"task" : "Renforcer le contrôle d'accès Heineken (ACM Access Control Monitoring)"}
+                ]
+            },
+            {
+                "company" : "BRALIRWA (RWANDA), BRARUDI (BURUNDI), BRALIMA & BOUKIN (RD CONGO), SIERRA LEONE BREWERY Ltd (SIERRA LEONE), CONSOLIDED BREWERIES Ltd (NIGERIA), HEINEKEN SHARES COMPANY (ETHIOPIE) et BRASIVOIRE (COTE D'IVOIRE)",
+                "role" : "Change Team Lead ERP Microsoft Dynamics Navision en Afrique 6 pays (RWANDA, BURUNDI, RD CONGO, SIERRA LEONE, NIGERIA, Éthiopie et Côte d'Ivoire)",
+                "tasks" : [
+                    {"task" : "Orienter les OpCo's dans l'élaboration des Méthodes et Procédures"},
+                    {"task" : "Assister et former les utilisateurs des Opco's dans la collecte et l'Organisation des Master Data (Données de base de l'entreprise) suivant le standard Heineken"},
+                    {"task" : "Assister et former les utilisateurs des Opco's dans la collecte et l'Organisation des paramètres fixes et variables"},
+                    {"task" : "Mise en œuvre & Déploiement de l'ERP d'Application Heineken Heilite Microsoft Dynamics Navision (Support, Assistance, Formation et résolution des problèmes techniques et Comptables du progiciel)"}
+                ]
+            },
+            {
+                "company" : "Office National des Transport de la RD Congo (ONATRA)",
+                "role" : "Chef de projet assistant de l'organisation et traitement Informatique de l'application des approvisionnements & Prix de revient au CTI ONATRA",
+                "tasks" : null
+            },
+            {
+                "company" : "Office National des Postes et Télécommunication du Zaïre (ONPTZ)",
+                "role" : "Responsable du planning des effectifs aux ressources humaines ONPTZ",
+                "tasks" : null
+            }
+        ],
+        "diplomas" : [
+            {
+                "diploma" : "Gradué en Conception et Organisation Informatique à l'Institut Supérieur des Statistiques de Kinshasa République Démocratique du Congo"
+            }
+        ],
+        "expertises" : [
+            {
+            "expertise" : "Gestion des projets ;"
+            },
+            {
+            "expertise" : "Gestion des Ressources Humaines & Calcul de la paie ;"
+            },
+            {
+            "expertise" : "Amélioration des processus métier ;"
+            },
+            {
+            "expertise" : "Méthodes et procédure ;"
+            },
+            {
+            "expertise" : "Contrôle Interne ;"
+            },
+            {
+            "expertise" : "Résolution des problèmes comptables des ERP ou progiciels de gestion intégrés ;"
+            },
+            {
+            "expertise" : "Développement des applications sur mesure Web, mobile, etc. ;"
+            },
+            {
+            "expertise" : "Développement des applications métiers sur mesure ERP ou progiciels de gestion intégrés ;"
+            },
+            {
+            "expertise" : "Implémentation ERP ou progiciels de gestion intégrés (MS Dynamics Nav, SAP, SAGE, Odoo) ;"
+            },
+            {
+            "expertise" : "Migration Comptable (Balance de clôture vers la balance d'ouverture) ;"
+            },
+            {
+            "expertise" : "Codification des données de base de l'entreprise avant migration dans la base de données ;"
+            },
+            {
+            "expertise" : "Migration (importation) des données de base de l'entreprise."
+            }
+        ],
+        "work_countries" : [
+            {
+                "region" : "Afrique",
+                "countries" : "RD Congo, Nigéria, Tchad, Burundi, Rwanda, Sierra-Leone, Ethiopie, Côte d'ivoire"
+            }
+        ],
+        "picture" : "assets/img/team/member-2.jpg"
+        },
+        {
+        "id" : 3,
+        "names" : "Luminuku Kiasingama Emile",
+        "role" : "Directeur Régional Grand Katanga",
+        "facebook" : "",
+        "twitter" : "",
+        "instagram" : "",
+        "linkedin" : "",
+        "assets" :
+        [
+            {
+                "asset1" : "Luminuku Kiasingama Emile,",
+                "asset2" : "",
+                "asset3" : "",
+                "asset4" : {
+                    "content1" : "",
+                    "list_item_1" : "",
+                    "list_item_2" : "",
+                    "list_item_3" : "",
+                    "list_item_4" : "",
+                    "list_item_5" : "",
+                    "list_item_6" : "",
+                    "content2" : "",
+                    "content3" : "",
+                    "content4" : ""
+                }
+            }
+        ],
+        "experience" :
+        [
+            {
+                "company" : "",
+                "role" : "",
+                "tasks" : null
+            },
+            {
+                "company" : "",
+                "role" : "",
+                "tasks" : null
+            }
+        ],
+        "diplomas" : [],
+        "expertises" : [],
+        "work_countries" : [],
+        "picture" : "assets/img/team/member-4.jpg"
+        },
+        {
+        "id" : 4,
+        "names" : "Sarah Kalala",
+        "role" : "Marketing & Communication",
+        "facebook" : "",
+        "twitter" : "",
+        "instagram" : "https://instagram.com/sara.kalala.14?igshid=NTc4MTIwNjQ2YQ==",
+        "linkedin" : "https://www.linkedin.com/in/sarah-kalala-275908167",
+        "assets" :
+        [
+            {
+                "asset1" : "Sarah Kalala, Master en communication socio-éducative et stratégique à l'université catholique du Congo est une jeune femme Passionnée, Dynamique, Rigoureuse, Focus.",
+                "asset2" : "Travailleuse, elle est très impliquée et ne lâche rien tant qu'elle n'a pas encore atteint ses objectifs ; sa passion pour la communication lui a conduit à travailler avec diverses entreprises dans la gestion de leur relation client et dans l'organisation des évènements.",
+                "asset3" : "",
+                "asset4" : {
+                    "content1" : "",
+                    "list_item_1" : "",
+                    "list_item_2" : "",
+                    "list_item_3" : "",
+                    "list_item_4" : "",
+                    "list_item_5" : "",
+                    "list_item_6" : "",
+                    "content2" : "",
+                    "content3" : "",
+                    "content4" : ""
+                }
+            }
+        ],
+        "experience" :
+        [
+            {
+                "company" : "",
+                "role" : "Front desk : 2020-2021",
+                "tasks" : null
+            },
+            {
+                "company" : "",
+                "role" : "Sales officer Token communication",
+                "tasks" : null
+            }
+        ],
+        "diplomas" : [],
+        "expertises" : [],
+        "work_countries" : [],
+        "picture" : "assets/img/team/member-3.jpg"
+        }
+    ],
+    "en" :
+    [
+        {
+        "id" : 1,
+        "names" : "Alphonse-Willy Ngana",
+        "role" : "Co-founder & Chief Executive officier",
+        "facebook" : "",
+        "twitter" : "",
+        "instagram" : "",
+        "linkedin" : "https://www.linkedin.com/in/a-willy-ngana-mabiala-6b54267",
+        "assets" :
+        [
+            {
+                "asset1" : "Managing Director & Co-Founder, Kinshasa & Amsterdam",
+                "asset2" : "Entrepreneur, founders and directors of companies, with strong leadership and a track record in the turnaround and transformation of companies with a view to sustainable growth and profitability, particularly in companies in the agri-food, manufacturing and financial services. His leadership in public relations strategy, private and government advocacy has accelerated business performance. Advocating with insistence, particularly on strategy, growth, sustainability and governance, public policy, economic development and Board effectiveness of both organizations and individuals is his passion.",
+                "asset3" : "",
+                "asset4" : {
+                    "content1" : "",
+                    "list_item_1" : "",
+                    "list_item_2" : "",
+                    "list_item_3" : "",
+                    "list_item_4" : "",
+                    "list_item_5" : "",
+                    "list_item_6" : "",
+                    "content2" : "",
+                    "content3" : "",
+                    "content4" : ""
+                }
+            },
+            {
+                "asset1" : "Willy NGANA has 19 years of rich experience in international management, especially in Africa and the Middle East, but also in Western Europe. He also has solid experience in general management, financial management, internal audit, risk management and extensive experience in the Board of Directors of both private and public companies and in non-governmental organizations.",
+                "asset2" : "Alphonse Willy has extensive experience and understanding of the economic and social challenges and dynamics of countries, of tax policies and economic development programs, particularly in sub-Saharan Africa. He is resilient and passionate about bringing and transforming any organization he is in, Alphonse Willy has demonstrated strong leadership ability in business turnaround, launch as well as IPO, management of crisis and environmental, social and governance. He is currently Chairman of the Board of Directors of FBN Banque RDC.",
+                "asset3" : "",
+                "asset4" : {
+                    "content1" : "",
+                    "list_item_1" : "",
+                    "list_item_2" : "",
+                    "list_item_3" : "",
+                    "list_item_4" : "",
+                    "list_item_5" : "",
+                    "list_item_6" : "",
+                    "content2" : "",
+                    "content3" : "",
+                    "content4" : ""
+                }
+            }
+        ],
+        "experience" :
+        [
+            {
+                "company" : "Heinekein International Group",
+                "role" : "Director of business project development for the Africa and Middle East zone, Amsterdam, Holland",
+                "tasks" : null
+            },
+            {
+                "company" : "Sierra Leone Brewery LTD",
+                "role" : "Managing Director/Country Director, Freetown, Sierra Leone",
+                "tasks" : null
+            },
+            {
+                "company" : "Bralirwa SA",
+                "role" : "Chief Financial Officer, Kigali, Rwanda",
+                "tasks" : null
+            },
+            {
+                "company" : "Rwanda Stock Exchange",
+                "role" : "Establishment of the Rwanda Stock Exchange through the initial public offering (IPO) of the Bralirwa in Kigali, Rwanda",
+                "tasks" : null
+            },
+            {
+                "company" : "Millenium Challenge Corporation USA (Sierra Leone Unit)",
+                "role" : "Independent Director, Freetown Sierra Leone",
+                "tasks" : null
+            },
+            {
+                "company" : "Chambre de Commerce de Sierra Leone",
+                "role" : "Board Member, Freetown Sierra Leone",
+                "tasks" : null
+            }
+        ],
+        "diplomas" :
+        [
+            {
+                "diploma" : "Master in Economics, Higher Institute of Commerce, Kinshasa, DRC"
+            },
+            {
+                "diploma" : "INSEAD France, Leadership IMAC ans General Manager Training"
+            },
+            {
+                "diploma" : "Harvard Business School USA, Leadership"
+            },
+            {
+                "diploma" : "IMD Lausanne Switzerland, High Effective Board of Director"
+            }
+        ],
+        "expertises" :
+        [
+            {
+                "expertise" : "Chief Executive Officer and Chief Financial Officer"
+            },
+            {
+                "expertise" : "Board of Directors"
+            },
+            {
+                "expertise" : "Strategy, Turnaround, Transformation, Organizational change, Innovation and products"
+            },
+            {
+                "expertise" : "Risk management, internal audit & internal control"
+            },
+            {
+                "expertise" : "Public Relations: Public Affairs and lobbying"
+            },
+            {
+                "expertise" : "Bank"
+            },
+            {
+                "expertise" : "Non-Governmental Organization"
+            },
+            {
+                "expertise" : "Social Environment & Governance"
+            },
+            {
+                "expertise" : "Crisis Management and Business Continuity"
+            }
+        ],
+        "work_countries" :
+        [
+            {
+                "region" : "Europe",
+                "countries" : "Holland, France, Spain, Ireland, Italy"
+            },
+            {
+                "region" : "Africa & Middle East",
+                "countries" : "DRC, Egypt, Tunisia, Algeria, Ivory Coast, Sierra Leone, Nigeria, Ethiopia, Rwanda, Burundi, Angola, Namibia, Republic of South Africa, Lebanon, Saudi Arabia"
+            },
+            {
+                "region" : "Asia",
+                "countries" : "New Caledonia"
+            },
+            {
+                "region" : "West Indies",
+                "countries" : "Guadeloupe and Martinique"
+            }
+        ],
+        "picture" : "assets/img/team/member-1.jpg"
+        },
+        {
+        "id" : 2,
+        "names" : "René Kungana Kola",
+        "role" : "Transformation Digital Director",
+        "facebook" : "https://www.facebook.com/rene.k.kola?mibextid=LQQJ4d",
+        "twitter" : "https://twitter.com/KunganaKolaRene",
+        "instagram" : "",
+        "linkedin" : "https://www.linkedin.com/in/rene-kungana-kola-28682097",
+        "assets" :
+        [
+            {
+                "asset1" : "KUNGANA KOLA René has more than 30 years of experience in digital transformation at Heineken International, mainly in managing the implementation of management information system projects (ERP – Enterprise Resource Planning or Integrated Management Software) and business development in Africa. He is fluent in French and English and has lived and worked in many African countries, such as DR Congo, Nigeria, Ethiopia, Sierra Leone, Rwanda, Burundi, Ivory Cost and Tchad.",
+                "asset2" : "In his career, he has a strong experience in the implementation of software packages (1) SAP- Human Resource Success factor, (2) SAGE – Payroll & Personnel Management, (3) Microsoft Dynamics Navision: Purchase, Sale, Stock, Manufacturing and quality control, Equipment management, Accounting & Finance. (4) Odoo Enterprise: Purchase, Sale, Stock, Production, Equipment Management, Accounting & Finance, Personnel Management, etc.",
+                "asset3" : "Among other things, he has held the position of (1) SAP MyHR and SAGE Payroll consultant from 2019 to 2021 (2) the position of Senior IT Project Manager since March 2017. Prior to this position, he was Finance and Development Project Manager at Heineken Sierra Leone Brewery in 2016, he successfully led the improvement of management, Methods and Procedures and the implementation of Microsoft Dynamics Navision 2013 and their reporting tools within this company. He assisted and trained employees in the implementation of IT operations and in the organization of Finance.",
+                "asset4" : {
+                    "content1" : "Prior to the above role, he was a member of the Heineken Change Team, where he played a key role during the implementation and implementation, and training on Microsoft Dynamics Navision in Heineken in Sub-Saharan Africa. (6 countries):",
+                    "list_item_1" : "Heineken BRARUDI in BURUNDI 2 breweries ;",
+                    "list_item_2" : "Heineken BRALIRWA in RWANDA 2 breweries;",
+                    "list_item_3" : "Heineken BRALIMA in DR Congo 6 breweries and 1 bottling plant;",
+                    "list_item_4" : "Heineken SIERRA LEONE brewery in Sierra Leone 1 brewery;",
+                    "list_item_5" : "Heineken Consolidated Breweries Ltd in NIGERIA 6 breweries ;",
+                    "list_item_6" : "Heineken Share Companies in Ethiopia 3 breweries and several distribution centers.",
+                    "content2" : "Previously, he was a functional and technical consultant at Heineken CHAD, he successfully led the implementation of the Heineken Africa (ISHA) information system, and also Heineken Standard Accounting System (SCAN – SCOA) in CHAD and in SIERRA LEONE.",
+                    "content3" : "Before joining Heineken in 1988, he was assistant supply project manager at the National Transport Office (ONATRA) in the DR Congo, where he was in charge of the Organization, Methods and Procedures, accounting and price calculation of come back.",
+                    "content4" : "He was also the Head of Workforce Planning in Human Resources – at the National Office of Posts and Telecommunications of Zaire (ONPTZ) in DR Congo."
+                }
+            }
+        ],
+        "experience" :
+        [
+            {
+                "company" : "BRALIMA SA & BOUKIN SA",
+                "role" : "Senior IT Project Manager BRALIMA SA & BOUKIN SA",
+                "tasks" : [
+                    {"task" : "Management of complex and multidisciplinary IT projects"},
+                    {"task" : "IT Strategy Advisor"},
+                    {"task" : "IT Organization Advisor for Bralima and Boukin"},
+                    {"task" : "IT Technology Advisor"},
+                    {"task" : "IT Service Management Advisor"},
+                    {"task" : "IT support"},
+                    {"task" : "Computer trainer"}
+                ]
+            },
+            {
+                "company" : "Sierra Leone Brewery Ltd",
+                "role" : "MS Dynamics Navision Project Manager and Finance Development Manager at Heineken Sierra Leone",
+                "tasks" : [
+                    {"task" : "Improving Methods and Procedures according to Heineken"},
+                    {"task" : "Implementation of internal control and Reconciliation of accounts"},
+                    {"task" : "Implementation, support, user training on monitoring and cost control"},
+                    {"task" : "Overcome the shortcomings of local staff"},
+                    {"task" : "Improve TOPS (Technical Organization Process and Security) reporting"},
+                    {"task" : "Reinforce Heineken access control (ACM Access Control Monitoring)"}
+                ]
+            },
+            {
+                "company" : "BRALIRWA (RWANDA), BRARUDI (BURUNDI), BRALIMA & BOUKIN (RD CONGO), SIERRA LEONE BREWERY Ltd (SIERRA LEONE), CONSOLIDATED BREWERIES Ltd (NIGERIA), HEINEKEN SHARES COMPANY (ETHIOPIA) and BRASIVOIRE (IVOIRY COAST)",
+                "role" : "Change Team Lead ERP Microsoft Dynamics Navision in Africa 6 countries (RWANDA, BURUNDI, DR CONGO, SIERRA LEONE, NIGERIA, Ethiopia and Ivory Coast)",
+                "tasks" : [
+                    {"task" : "Guide OpCos in the development of Methods and Procedures"},
+                    {"task" : "Assist and train Opco's users in the collection and organization of Master Data (Corporate Basic Data) according to the Heineken standard"},
+                    {"task" : "Assist and train Opco's users in the collection and organization of fixed and variable parameters"},
+                    {"task" : "Implementation & Deployment of the Heineken Heilite Microsoft Dynamics Navision Application ERP (Support, Assistance, Training and resolution of technical and accounting problems of the software package)"}
+                ]
+            },
+            {
+                "company" : "Office National des Transport of the DR Congo (ONATRA)",
+                "role" : "Assistant project manager for the organization and IT processing of the application of supplies & cost price at the CTI ONATRA",
+                "tasks" : null
+            },
+            {
+                "company" : "Office National des Postes et Télécommunication du Zaïre (ONPTZ)",
+                "role" : "Head of workforce planning for human resources ONPTZ",
+                "tasks" : null
+            }
+        ],
+        "diplomas" : [
+            {
+                "diploma" : "Graduated in Computer Design and Organization at the Higher Institute of Statistics of Kinshasa Democratic Republic of Congo"
+            }
+        ],
+        "expertises" : [
+            {
+            "expertise" : "Project management ;"
+            },
+            {
+            "expertise" : "Human Resources Management & Payroll Calculation;"
+            },
+            {
+            "expertise" : "Improving business processes;"
+            },
+            {
+            "expertise" : "Methods and procedure;"
+            },
+            {
+            "expertise" : "Internal control ;"
+            },
+            {
+            "expertise" : "Solving accounting problems of ERP or integrated management software packages;"
+            },
+            {
+            "expertise" : "Development of custom applications for web, mobile, etc. ;"
+            },
+            {
+            "expertise" : "Development of tailor-made business applications ERP or integrated management software packages;"
+            },
+            {
+            "expertise" : "ERP implementation or integrated management software (MS Dynamics Nav, SAP, SAGE, Odoo);"
+            },
+            {
+            "expertise" : "Accounting migration (closing balance to opening balance);"
+            },
+            {
+            "expertise" : "Codification of the company's basic data before migration into the database;"
+            },
+            {
+            "expertise" : "Migration (import) of company master data."
+            }
+        ],
+        "work_countries" : [
+            {
+                "region" : "Africa",
+                "countries" : "DR Congo, Nigeria, Chad, Burundi, Rwanda, Sierra-Leone, Ethiopia, Ivory Coast"
+            }
+        ],
+        "picture" : "assets/img/team/member-2.jpg"
+        },
+        {
+        "id" : 3,
+        "names" : "Luminuku Kiasingama Emile",
+        "role" : "Directeur Régional Grand Katanga",
+        "facebook" : "",
+        "twitter" : "",
+        "instagram" : "",
+        "linkedin" : "",
+        "assets" :
+        [
+            {
+                "asset1" : "Luminuku Kiasingama Emile,",
+                "asset2" : "",
+                "asset3" : "",
+                "asset4" : {
+                    "content1" : "",
+                    "list_item_1" : "",
+                    "list_item_2" : "",
+                    "list_item_3" : "",
+                    "list_item_4" : "",
+                    "list_item_5" : "",
+                    "list_item_6" : "",
+                    "content2" : "",
+                    "content3" : "",
+                    "content4" : ""
+                }
+            }
+        ],
+        "experience" :
+        [
+            {
+                "company" : "",
+                "role" : "",
+                "tasks" : null
+            },
+            {
+                "company" : "",
+                "role" : "",
+                "tasks" : null
+            }
+        ],
+        "diplomas" : [],
+        "expertises" : [],
+        "work_countries" : [],
+        "picture" : "assets/img/team/member-4.jpg"
+        },
+        {
+        "id" : 4,
+        "names" : "Sarah Kalala",
+        "role" : "Marketing & Communication",
+        "facebook" : "",
+        "twitter" : "",
+        "instagram" : "https://instagram.com/sara.kalala.14?igshid=NTc4MTIwNjQ2YQ==",
+        "linkedin" : "https://www.linkedin.com/in/sarah-kalala-275908167",
+        "assets" :
+        [
+            {
+                "asset1" : "Sarah Kalala, Master in socio-educational and strategic communication at the Catholic University of Congo is a Passionate, Dynamic, Rigorous, Focused young woman.",
+                "asset2" : "Hardworking, she is very involved and does not give up until she has reached her goals; his passion for communication led him to work with various companies in the management of their customer relations and in the organization of events.",
+                "asset3" : "",
+                "asset4" : {
+                    "content1" : "",
+                    "list_item_1" : "",
+                    "list_item_2" : "",
+                    "list_item_3" : "",
+                    "list_item_4" : "",
+                    "list_item_5" : "",
+                    "list_item_6" : "",
+                    "content2" : "",
+                    "content3" : "",
+                    "content4" : ""
+                }
+            }
+        ],
+        "experience" :
+        [
+            {
+                "company" : "",
+                "role" : "Front desk : 2020-2021",
+                "tasks" : null            },
+            {
+                "company" : "",
+                "role" : "Sales officer Token communication",
+                "tasks" : null
+            }
+        ],
+        "diplomas" : [],
+        "expertises" : [],
+        "work_countries" : [],
+        "picture" : "assets/img/team/member-3.jpg"
+        }
+    ]
+}
