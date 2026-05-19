@@ -46,6 +46,10 @@ class ServiceResource extends Resource
                         Forms\Components\TextInput::make('icon')
                             ->maxLength(255)
                             ->placeholder('heroicon-o-...'),
+                        Forms\Components\TextInput::make('featured_image')
+                            ->label('Image (chemin sous assets/img/)')
+                            ->maxLength(255)
+                            ->placeholder('services/service-1.png'),
                         Forms\Components\TextInput::make('sort_order')
                             ->numeric()
                             ->default(0),

@@ -1,0 +1,239 @@
+/* Ajustements sobres SkyITup sur le thème Hub (Liquid) */
+
+:root {
+	/* Palette extraite du logo SkyITup */
+	--lqd-color-primary: #fc9928;
+	--lqd-color-secondary: #0b4f5e;
+	--lqd-color-link: #0b4f5e;
+	--lqd-color-link-hover: #d73c2c;
+}
+
+/* Désactive le sticky de l'ancien menu (partials/menu.blade.php) */
+.main-header.header-style-one .sticky-header {
+	display: none !important;
+}
+
+.sky-hub-header-logo .navbar-brand-inner img {
+	max-height: 52px;
+	width: auto;
+	height: auto;
+}
+
+/* Laisse le thème gérer .is-stuck { position: fixed }. Ne pas poser position:relative sur #site-header
+   seul : la spécificité (#id) écraserait le fixed du thème et casserait le header collé. */
+#site-header.main-header {
+	z-index: 9999;
+}
+
+#site-header.main-header.main-header-overlay:not(.is-stuck) {
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: var(--lqd-top-scroll-ind-height, 0);
+}
+
+#site-header .module-header {
+	display: flex !important;
+	backdrop-filter: none;
+}
+
+#site-header .main-nav > li > a:hover,
+#site-header .main-nav > li.is-active > a {
+	color: var(--lqd-color-primary) !important;
+}
+
+#site-header .sky-hub-header-logo .logo-default {
+	max-height: 62px;
+}
+
+#site-header .sky-hub-header-logo .logo-sticky {
+	display: none;
+	max-height: 46px;
+	max-width: 220px;
+}
+
+#site-header.is-stuck .module-header {
+	background: #ffffff !important;
+	background-color: #ffffff !important;
+	backdrop-filter: none;
+	-webkit-backdrop-filter: none;
+	border-bottom: 1px solid rgba(11, 79, 94, 0.18);
+	padding-top: 6px;
+	padding-bottom: 6px;
+	min-height: 74px;
+	display: flex !important;
+	align-items: center;
+}
+
+#site-header.is-stuck .sky-hide-topbar-mobile {
+	display: none !important;
+}
+
+#site-header.is-stuck > :not(.module-header):not(.lqd-mobile-sec) {
+	display: none !important;
+}
+
+#site-header.is-stuck {
+	background: #ffffff !important;
+	background-color: #ffffff !important;
+}
+
+/* Page About (démo Hub) : onglets + icônes en teal brand (accueil) plutôt que vert template. */
+body.sky-about-page .tab-items .lqd-tabs-style-3 .lqd-tabs-nav li a:after {
+	background-color: var(--lqd-color-secondary);
+}
+
+body.sky-about-page .icon-box-page .iconbox-icon-container svg path[fill] {
+	fill: var(--lqd-color-secondary);
+}
+
+body.sky-about-page .has-accordion-page .accordion-title {
+	color: var(--lqd-color-secondary) !important;
+}
+
+/* Filigrane titlebar aligné sur la palette accueil */
+.sky-titlebar-overlay {
+	background-color: rgba(11, 79, 94, 0.78) !important;
+}
+
+#site-header.is-stuck .sky-hub-header-logo .logo-default {
+	display: none;
+}
+
+#site-header.is-stuck .sky-hub-header-logo .logo-sticky {
+	display: inline-block;
+	max-height: 56px;
+	max-width: min(320px, 42vw);
+	width: auto;
+	height: auto;
+	object-fit: contain;
+}
+
+#site-header.is-stuck .sky-hub-header-logo .navbar-brand {
+	padding-top: 0.35rem;
+	padding-bottom: 0.35rem;
+}
+
+#site-header.is-stuck .main-nav > li > a,
+#site-header.is-stuck .main-nav > li > a .link-sup {
+	color: #0f2430 !important;
+}
+
+#site-header.is-stuck .main-nav > li > a:hover,
+#site-header.is-stuck .main-nav > li.is-active > a {
+	color: #fc9928 !important;
+}
+
+#site-header.is-stuck .text-end h6,
+#site-header.is-stuck .text-end h6 .text-inherit {
+	color: #0f2430 !important;
+}
+
+#site-header.is-stuck .text-end h6 a {
+	color: var(--lqd-color-primary) !important;
+}
+
+#site-header.is-stuck .ld-module-trigger-txt,
+#site-header.is-stuck .ld-module-trigger-icon,
+#site-header.is-stuck .ld-dropdown-menu a {
+	color: #0f2430 !important;
+}
+
+#site-header.is-stuck .main-nav > li > a,
+#site-header.is-stuck .main-nav > li > a .link-sup,
+#site-header.is-stuck .module-header .btn .btn-txt,
+#site-header.is-stuck .module-header .btn {
+	color: #111 !important;
+}
+
+#site-header.is-stuck .module-header .btn:hover .btn-txt,
+#site-header.is-stuck .module-header .btn:hover,
+#site-header.is-stuck .main-nav > li > a:hover .link-sup {
+	color: #fc9928 !important;
+}
+
+#site-header.is-stuck .main-nav {
+	gap: 0.25rem;
+}
+
+#site-header.is-stuck .main-nav > li > a {
+	font-weight: 700;
+}
+
+#site-header .ld-module-search .ld-module-trigger-icon:hover,
+#site-header .ld-dropdown-menu a:hover {
+	color: var(--lqd-color-primary);
+}
+
+#site-footer {
+	background-color: #091217 !important;
+	background-image: none !important;
+}
+
+#site-footer .sky-footer-logo {
+	display: block;
+	width: min(420px, 92%);
+	max-height: 120px;
+	height: auto;
+	object-fit: contain;
+}
+
+#site-footer a:hover {
+	color: var(--lqd-color-primary) !important;
+}
+
+#site-footer .module-bottom {
+	border-top-color: rgba(242, 190, 47, 0.2) !important;
+}
+
+.sky-lang-switch.sky-lang-switch--hub {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.35rem;
+}
+
+.sky-lang-switch.sky-lang-switch--hub a {
+	color: inherit;
+	text-decoration: none;
+	opacity: 0.72;
+	font-size: 13px;
+	font-weight: 500;
+	padding: 0.15rem 0.35rem;
+	border-radius: 4px;
+}
+
+.sky-lang-switch.sky-lang-switch--hub a:hover {
+	opacity: 1;
+}
+
+.sky-lang-switch.sky-lang-switch--hub a.is-active {
+	opacity: 1;
+	font-weight: 700;
+}
+
+@media (max-width: 1198px) {
+	.sky-hide-topbar-mobile {
+		display: none !important;
+	}
+}
+
+@media (min-width: 1200px) {
+	#site-header .lqd-mobile-sec {
+		display: none !important;
+	}
+}
+
+@media (max-width: 1199px) {
+	#site-header section.module-header {
+		display: none !important;
+	}
+
+	#site-header .sky-hub-header-logo .logo-default {
+		max-height: 44px;
+	}
+
+	#site-footer .sky-footer-logo {
+		max-height: 88px;
+		width: min(360px, 94%);
+	}
+}

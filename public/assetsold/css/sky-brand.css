@@ -1,0 +1,395 @@
+/**
+ * SkyITup — couleurs dérivées du logo (or, orange, corail, teal, fond sombre)
+ */
+:root {
+  --sky-gold: #fdb813;
+  --sky-orange: #f37021;
+  --sky-coral: #e84e1b;
+  --sky-teal: #2d8b94;
+  --sky-black: #0a0a0a;
+  --theme-color1: #0a0a0a;
+  --theme-color2: #fdb813;
+  --theme-color3: #2d8b94;
+  --bg-theme-color1: #f37021;
+  --bg-theme-color2: #2d8b94;
+  --border-theme-color1: #e84e1b;
+  --border-theme-color2: #fdb813;
+  --sec-title-subtitle-color: #fdb813;
+  --link-hover-color: #fdb813;
+  --gradient-4: linear-gradient(90deg, #0a0a0a 0%, #fdb813 55%, #f37021 100%);
+}
+
+.header-style-one {
+  background: linear-gradient(
+    90deg,
+    rgba(10, 10, 10, 0.97) 0%,
+    rgba(20, 20, 20, 0.94) 50%,
+    rgba(10, 10, 10, 0.97) 100%
+  ) !important;
+  border-bottom: 1px solid rgba(253, 184, 19, 0.22);
+}
+
+.header-style-one .main-menu .navigation > li > a:hover,
+.header-style-one .main-menu .navigation > li.current > a {
+  color: var(--sky-gold) !important;
+}
+
+.sticky-header {
+  background: var(--sky-black) !important;
+  border-bottom: 2px solid var(--sky-teal);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.35);
+}
+
+.sticky-header .main-menu .navigation > li > a {
+  color: rgba(255, 255, 255, 0.88) !important;
+}
+
+.sticky-header .main-menu .navigation > li:hover > a,
+.sticky-header .main-menu .navigation > li.current > a {
+  color: var(--sky-gold) !important;
+}
+
+.sticky-header .mobile-nav-toggler {
+  color: var(--sky-gold) !important;
+}
+
+.sky-logo-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+}
+
+.sky-logo-link.justify-content-center {
+  justify-content: center;
+}
+
+/* Logo seul (wordmark complet ou pictogramme) */
+.sky-logo-wordmark-only {
+  display: block;
+  height: auto;
+  max-height: 52px;
+  width: auto;
+  max-width: min(260px, 46vw);
+  object-fit: contain;
+}
+
+.sky-logo-mark-only {
+  display: block;
+  height: auto;
+  max-height: 64px;
+  width: auto;
+  max-width: 72px;
+  object-fit: contain;
+}
+
+.sky-logo-wordmark--compact {
+  max-height: 40px !important;
+  max-width: 200px !important;
+}
+
+@media only screen and (max-width: 575px) {
+  .sky-logo-wordmark-only {
+    max-width: min(200px, 58vw);
+    max-height: 44px;
+  }
+}
+
+.sticky-header .sky-logo-wordmark-only {
+  max-height: 36px;
+  max-width: 180px;
+}
+
+/* Header : le thème met .nav-outer à width:100%, ce qui écrase le logo — on rééquilibre la flex */
+.header-style-one .main-box.sky-main-box {
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 12px 20px;
+  justify-content: space-between;
+}
+
+.header-style-one .sky-logo-box {
+  flex: 0 0 auto;
+  min-width: 0;
+  margin-right: 16px !important;
+}
+
+.header-style-one .sky-logo-box .logo {
+  margin: 0;
+}
+
+.header-style-one .sky-nav-outer {
+  width: auto !important;
+  flex: 1 1 auto;
+  min-width: 0;
+  justify-content: center !important;
+}
+
+@media only screen and (min-width: 1024px) {
+  .header-style-one .sky-nav-outer .main-menu {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .header-style-one .sky-nav-outer .main-menu .navigation {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0 8px;
+  }
+}
+
+.header-style-one .sky-outer-box {
+  flex: 0 0 auto;
+  flex-shrink: 0;
+  margin-left: 12px;
+}
+
+/* Le thème impose .main-header .main-box .nav-outer { display:flex } (plus spécifique que .sky-nav-outer seul) : on force le masquage du menu desktop sur mobile */
+@media only screen and (max-width: 1023px) {
+  .header-style-one .main-box .nav-outer.sky-nav-outer {
+    display: none !important;
+  }
+}
+
+.sky-lang-switch {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-left: 12px;
+  padding-left: 16px;
+  border-left: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.sky-lang-switch a {
+  display: inline-block;
+  padding: 6px 10px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: rgba(255, 255, 255, 0.65) !important;
+  text-decoration: none;
+  border-radius: 4px;
+  line-height: 1;
+}
+
+.sky-lang-switch a:hover {
+  color: var(--sky-gold) !important;
+}
+
+.sky-lang-switch a.is-active {
+  color: var(--sky-black) !important;
+  background: var(--sky-gold);
+}
+
+.sticky-header .sky-lang-switch {
+  border-left-color: rgba(255, 255, 255, 0.12);
+}
+
+.outer-box {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+@media only screen and (max-width: 1023px) {
+  .sky-lang-switch {
+    border-left: none;
+    margin-left: 0;
+    padding-left: 0;
+    order: -1;
+    width: 100%;
+    justify-content: flex-end;
+    margin-bottom: 8px;
+  }
+}
+
+.sticky-header .nav-outer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-wrap: nowrap;
+  gap: 8px;
+}
+
+@media only screen and (min-width: 1024px) {
+  .sticky-header .nav-outer .main-menu {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+  }
+}
+
+@media only screen and (max-width: 1023px) {
+  .sticky-header .nav-outer .main-menu {
+    display: none !important;
+  }
+}
+
+.sky-lang-switch.justify-content-center {
+  justify-content: center;
+  width: 100%;
+  border-left: none;
+  margin-left: 0;
+  padding-left: 0;
+}
+
+/* Slider : titres plus compacts + texte centré pour limiter les chevauchements */
+.sky-main-slider .sky-slide-kicker {
+  display: block;
+  margin: 0 auto;
+}
+
+.sky-main-slider .sky-slide-title {
+  margin: 0 auto;
+  font-size: clamp(1.65rem, 3vw, 2.85rem) !important;
+  line-height: 1.2 !important;
+  max-width: min(34rem, 92vw);
+  text-align: center;
+}
+
+.sky-main-slider .sky-slide-desc {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 36rem;
+  line-height: 1.5 !important;
+}
+
+.sky-main-slider .sky-slide-btns {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+}
+
+/* Accueil : au survol, texte des cartes services en blanc (surcharge du thème #8c8f94) */
+.sky-home-services .service-block-new-3.at-home9 .inner-box:hover .text {
+  color: #ffffff !important;
+}
+
+.sky-home-services .service-block-new-3.at-home9 .inner-box:hover .title,
+.sky-home-services .service-block-new-3.at-home9 .inner-box:hover .title a {
+  color: #ffffff !important;
+}
+
+/* Menu mobile : fond blanc, liens noirs, actif/survol orange ; masque la barre header sombre quand le panneau est ouvert */
+@media only screen and (max-width: 1023px) {
+  body.mobile-menu-visible .main-header .main-box,
+  body.mobile-menu-visible .main-header .sticky-header {
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+    transition: opacity 0.2s ease, visibility 0.2s ease;
+  }
+
+  .mobile-menu .menu-backdrop {
+    background: rgba(10, 10, 10, 0.35) !important;
+  }
+
+  .mobile-menu .menu-box {
+    background: #ffffff !important;
+    box-shadow: -8px 0 32px rgba(0, 0, 0, 0.12);
+  }
+
+  .mobile-menu .upper-box {
+    border-bottom: 1px solid rgba(10, 10, 10, 0.08);
+  }
+
+  .mobile-menu .close-btn {
+    color: var(--sky-black) !important;
+  }
+
+  .mobile-menu .close-btn:hover {
+    opacity: 1 !important;
+    color: var(--sky-orange) !important;
+  }
+
+  .mobile-menu .navigation {
+    border-top: 1px solid rgba(10, 10, 10, 0.08);
+  }
+
+  .mobile-menu .navigation li {
+    border-bottom: 1px solid rgba(10, 10, 10, 0.08);
+  }
+
+  .mobile-menu .navigation li > ul > li:first-child {
+    border-top: 1px solid rgba(10, 10, 10, 0.08);
+  }
+
+  .mobile-menu .navigation li > a {
+    color: var(--sky-black) !important;
+  }
+
+  .mobile-menu .navigation li:hover > a,
+  .mobile-menu .navigation li.current > a {
+    color: var(--sky-orange) !important;
+  }
+
+  .mobile-menu .navigation li.dropdown .dropdown-btn {
+    color: var(--sky-black) !important;
+  }
+
+  .mobile-menu .navigation li.dropdown .dropdown-btn:after {
+    border-left-color: rgba(10, 10, 10, 0.12) !important;
+  }
+
+  .mobile-menu .contact-list-one li .contact-info-box {
+    color: #333333 !important;
+  }
+
+  .mobile-menu .contact-list-one li .contact-info-box a {
+    color: var(--sky-black) !important;
+  }
+
+  .mobile-menu .contact-list-one li .contact-info-box a:hover {
+    color: var(--sky-orange) !important;
+  }
+
+  .mobile-menu .contact-list-one li .contact-info-box .title {
+    color: #666666 !important;
+  }
+
+  .mobile-menu .contact-list-one li .contact-info-box .icon {
+    color: var(--sky-orange) !important;
+  }
+
+  .mobile-menu .social-links {
+    background: #f5f5f5 !important;
+    border-top: 1px solid rgba(10, 10, 10, 0.08) !important;
+  }
+
+  .mobile-menu .social-links li {
+    border-right-color: rgba(10, 10, 10, 0.08) !important;
+  }
+
+  .mobile-menu .social-links li a {
+    color: var(--sky-black) !important;
+  }
+
+  .mobile-menu .social-links li a:hover {
+    color: var(--sky-orange) !important;
+  }
+
+  .mobile-menu .menu-box .sky-lang-switch {
+    border-left: none !important;
+    margin-left: 0 !important;
+    padding-left: 0 !important;
+  }
+
+  .mobile-menu .menu-box .sky-lang-switch a {
+    color: var(--sky-black) !important;
+    background: transparent !important;
+  }
+
+  .mobile-menu .menu-box .sky-lang-switch a:hover {
+    color: var(--sky-orange) !important;
+  }
+
+  .mobile-menu .menu-box .sky-lang-switch a.is-active {
+    color: #ffffff !important;
+    background: var(--sky-orange) !important;
+  }
+}

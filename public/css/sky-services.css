@@ -1,0 +1,45 @@
+/* Colonne droite : un seul panneau visible */
+.sky-services-hub .sky-services-panels-host {
+  position: relative;
+  width: 100%;
+}
+
+.sky-services-hub .sky-services-panels-host .sky-service-panel {
+  display: none !important;
+  visibility: hidden !important;
+  height: 0 !important;
+  overflow: hidden !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+}
+
+.sky-services-hub .sky-services-panels-host .sky-service-panel.is-active {
+  display: block !important;
+  visibility: visible !important;
+  height: auto !important;
+  overflow: visible !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Liste gauche : service actif */
+.sky-services-hub .module-list-bg .sky-services-nav-link {
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  font: inherit;
+  display: block;
+  width: 100%;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.sky-services-hub .module-list-bg .sky-services-nav-link.is-active {
+  background-color: var(--lqd-color-primary, #fad55b) !important;
+  color: var(--lqd-color-secondary, #181b31) !important;
+}
+
+.sky-services-hub .module-list-bg .sky-services-nav-link:not(.is-active) {
+  background-color: var(--lqd-color-accent, #f2f4f6) !important;
+  color: #181b31 !important;
+}

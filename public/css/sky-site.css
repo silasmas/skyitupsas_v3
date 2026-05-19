@@ -1,0 +1,226 @@
+/* Formulaire contact */
+.sky-contact-form__error {
+  display: block;
+  margin-top: 6px;
+  font-size: 12px;
+  color: #dc2626;
+}
+
+.sky-contact-form .has-error input,
+.sky-contact-form .has-error textarea {
+  border-color: #dc2626 !important;
+}
+
+.sky-contact-form__alert {
+  list-style: disc;
+}
+
+/* Toast site (contact / newsletter) */
+.sky-site-toast {
+  position: fixed;
+  top: 24px;
+  right: 24px;
+  left: 24px;
+  z-index: 100000;
+  max-width: 420px;
+  margin-left: auto;
+  opacity: 0;
+  transform: translateY(-12px);
+  visibility: hidden;
+  transition: opacity 0.35s ease, transform 0.35s ease, visibility 0.35s;
+}
+
+.sky-site-toast[hidden] {
+  display: none !important;
+}
+
+.sky-site-toast.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+  visibility: visible;
+}
+
+.sky-site-toast__inner {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 18px 20px;
+  background: #fff;
+  border-radius: 12px;
+  border-left: 4px solid var(--lqd-color-primary, #fc9928);
+  box-shadow: 0 12px 40px rgba(11, 79, 94, 0.2);
+}
+
+.sky-site-toast__icon {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #f0fdf4;
+  color: #16a34a;
+}
+
+.sky-site-toast__title {
+  margin: 0 0 6px;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--lqd-color-secondary, #0b4f5e);
+}
+
+.sky-site-toast__text {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.5;
+  color: #626974;
+}
+
+.sky-site-toast__close {
+  flex-shrink: 0;
+  margin-left: auto;
+  padding: 4px;
+  border: none;
+  background: transparent;
+  color: #94a3b8;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.sky-site-toast__close:hover {
+  color: var(--lqd-color-secondary, #0b4f5e);
+  background: #f1f5f9;
+}
+
+/* Newsletter footer */
+.sky-newsletter-form {
+  margin-top: 12px;
+}
+
+.sky-newsletter-form__row {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.sky-newsletter-form__input {
+  flex: 1 1 180px;
+  min-width: 0;
+  padding: 10px 14px;
+  border-radius: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+  font-size: 14px;
+}
+
+.sky-newsletter-form__input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.sky-newsletter-form__input:focus {
+  outline: none;
+  border-color: var(--lqd-color-primary, #fc9928);
+}
+
+.sky-newsletter-form__btn {
+  flex-shrink: 0;
+  padding: 10px 18px;
+  border: none;
+  border-radius: 4px;
+  background: var(--lqd-color-primary, #fc9928);
+  color: var(--lqd-color-secondary, #0b4f5e);
+  font-weight: 700;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.sky-newsletter-form__btn:hover {
+  background: #fff;
+}
+
+.sky-newsletter-form__error {
+  display: block;
+  margin-top: 8px;
+  font-size: 12px;
+  color: #fca5a5;
+}
+
+/* Recherche asynchrone header */
+.sky-search-dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  left: 0;
+  margin-top: 8px;
+  max-height: 360px;
+  overflow-y: auto;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 12px 40px rgba(11, 79, 94, 0.18);
+  z-index: 10050;
+  display: none;
+}
+
+.sky-search-dropdown.is-open {
+  display: block;
+}
+
+.sky-search-dropdown__item {
+  display: block;
+  padding: 12px 16px;
+  border-bottom: 1px solid #f1f5f9;
+  color: var(--lqd-color-secondary, #0b4f5e);
+  text-decoration: none;
+  transition: background 0.15s;
+}
+
+.sky-search-dropdown__item:hover {
+  background: #f8fafc;
+}
+
+.sky-search-dropdown__item:last-child {
+  border-bottom: none;
+}
+
+.sky-search-dropdown__type {
+  display: block;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--lqd-color-primary, #fc9928);
+  margin-bottom: 4px;
+}
+
+.sky-search-dropdown__title {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.sky-search-dropdown__excerpt {
+  display: block;
+  font-size: 12px;
+  color: #626974;
+  margin-top: 4px;
+}
+
+.sky-search-dropdown__status {
+  padding: 20px 16px;
+  text-align: center;
+  font-size: 13px;
+  color: #626974;
+}
+
+.ld-search-form-container {
+  position: relative;
+}
+
+@media (max-width: 575px) {
+  .sky-site-toast {
+    right: 16px;
+    left: 16px;
+    max-width: none;
+  }
+}

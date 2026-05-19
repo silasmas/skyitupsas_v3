@@ -1,0 +1,712 @@
+/**
+ * Modales recrutement — overlay JS (hors flux de page).
+ */
+
+/* Store : jamais visible dans la page */
+.sky-career-modals-store {
+  display: none !important;
+  visibility: hidden !important;
+  position: absolute !important;
+  width: 0 !important;
+  height: 0 !important;
+  overflow: hidden !important;
+  pointer-events: none !important;
+  clip: rect(0, 0, 0, 0) !important;
+}
+
+body.sky-career-modal-open {
+  overflow: hidden;
+}
+
+/* Overlay plein écran */
+.sky-career-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 16px;
+  box-sizing: border-box;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.28s ease, visibility 0.28s ease;
+}
+
+.sky-career-overlay[hidden] {
+  display: none !important;
+}
+
+.sky-career-overlay.is-open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.sky-career-overlay__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(11, 79, 94, 0.72);
+  backdrop-filter: blur(4px);
+}
+
+.sky-career-overlay__dialog {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 680px;
+  max-height: calc(100vh - 48px);
+  display: flex;
+  flex-direction: column;
+  transform: scale(0.94) translateY(16px);
+  opacity: 0;
+  transition: transform 0.32s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.28s ease;
+}
+
+.sky-career-overlay.is-open .sky-career-overlay__dialog {
+  transform: scale(1) translateY(0);
+  opacity: 1;
+}
+
+.sky-career-overlay__close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 5;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.95);
+  color: var(--lqd-color-secondary, #0b4f5e);
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+  transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+
+.sky-career-overlay__close:hover {
+  background: var(--lqd-color-primary, #fc9928);
+  color: #fff;
+  transform: scale(1.05);
+}
+
+.sky-career-overlay__slot {
+  width: 100%;
+  max-height: calc(100vh - 48px);
+  overflow: auto;
+  border-radius: 12px;
+}
+
+.sky-career-panel {
+  width: 100%;
+}
+
+.sky-career-modal__shell {
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 24px 64px rgba(11, 79, 94, 0.22);
+}
+
+.sky-career-modal__shell--apply {
+  max-width: 600px;
+}
+
+.sky-career-modal__hero {
+  background: linear-gradient(135deg, var(--lqd-color-secondary, #0b4f5e) 0%, #0d6378 55%, #0b4f5e 100%);
+  color: #fff;
+  padding: 28px 32px 24px;
+}
+
+.sky-career-modal__hero--compact {
+  padding: 24px 28px 20px;
+}
+
+.sky-career-modal__kicker {
+  margin: 0 0 8px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--lqd-color-primary, #fc9928);
+}
+
+.sky-career-modal__title {
+  margin: 0 0 16px;
+  padding: 0;
+  border: none;
+  font-size: clamp(22px, 4vw, 28px);
+  font-weight: 700;
+  line-height: 1.25;
+  color: #fff;
+}
+
+.sky-career-modal__meta {
+  list-style: none;
+}
+
+.sky-career-modal__pill {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 8px 14px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.sky-career-modal__pill-label {
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  opacity: 0.85;
+}
+
+.sky-career-modal__pill-value {
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.sky-career-modal__body {
+  padding: 28px 32px;
+}
+
+.sky-career-modal__body--form {
+  padding-bottom: 32px;
+}
+
+.sky-career-modal__section-title {
+  margin: 24px 0 12px;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--lqd-color-secondary, #0b4f5e);
+}
+
+.sky-career-modal__prose {
+  font-size: 15px;
+  line-height: 1.65;
+  color: #4a5568;
+}
+
+.sky-career-modal__prose p {
+  margin-bottom: 1em;
+}
+
+.sky-career-modal__prose ul,
+.sky-career-modal__prose ol {
+  margin: 0 0 1em;
+  padding-left: 1.25em;
+}
+
+.sky-career-modal__footer {
+  padding: 0 32px 28px;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+  padding-top: 20px;
+}
+
+.sky-career-empty-state {
+  text-align: center;
+  padding: 40px 24px;
+  border-radius: 10px;
+  background: #f8fafb;
+  border: 1px dashed rgba(11, 79, 94, 0.2);
+}
+
+.sky-career-empty-state__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  margin-bottom: 16px;
+  border-radius: 50%;
+  background: #fff;
+  color: var(--lqd-color-secondary, #0b4f5e);
+  box-shadow: 0 4px 16px rgba(11, 79, 94, 0.1);
+}
+
+.sky-career-empty-state__title {
+  margin: 0 0 8px;
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--lqd-color-secondary, #0b4f5e);
+}
+
+.sky-career-empty-state__text {
+  margin: 0 auto;
+  max-width: 360px;
+  font-size: 14px;
+  line-height: 1.55;
+  color: #626974;
+}
+
+.sky-career-feedback {
+  text-align: center;
+  padding: 36px 20px;
+  border-radius: 10px;
+}
+
+.sky-career-feedback--success {
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+}
+
+.sky-career-feedback--error {
+  text-align: left;
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  margin-bottom: 20px;
+  padding: 20px;
+}
+
+.sky-career-feedback--muted {
+  background: #f8fafb;
+  color: #626974;
+}
+
+.sky-career-feedback__icon {
+  display: inline-flex;
+  margin-bottom: 12px;
+  color: #16a34a;
+}
+
+.sky-career-feedback__title {
+  margin: 0 0 8px;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--lqd-color-secondary, #0b4f5e);
+}
+
+.sky-career-feedback__text {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #626974;
+}
+
+.sky-career-feedback__list {
+  margin: 8px 0 0;
+  padding-left: 1.2em;
+  font-size: 14px;
+  color: #b91c1c;
+}
+
+.sky-career-form__row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 16px;
+}
+
+@media (max-width: 575px) {
+  .sky-career-form__row {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .sky-career-modal__body,
+  .sky-career-modal__hero,
+  .sky-career-modal__footer {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .sky-career-overlay__dialog {
+    max-width: 100%;
+  }
+}
+
+.sky-career-form__field {
+  margin: 0 0 18px;
+}
+
+.sky-career-form__label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--lqd-color-secondary, #0b4f5e);
+}
+
+/* Champs texte : bordure + focus */
+.sky-career-form__control {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 12px 14px;
+  font-size: 14px;
+  line-height: 1.45;
+  color: #1a2e35;
+  background: #fff;
+  border: 2px solid #cfd9de;
+  border-radius: 8px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+.sky-career-form__control:hover {
+  border-color: #a8bcc4;
+}
+
+.sky-career-form__control:focus {
+  outline: none;
+  border-color: var(--lqd-color-primary, #fc9928);
+  box-shadow: 0 0 0 3px rgba(252, 153, 40, 0.28);
+  background: #fff;
+}
+
+.sky-career-form__control--textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+/* Zones drag-and-drop */
+.sky-career-dropzone {
+  position: relative;
+  border-radius: 10px;
+  transition: border-color 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.sky-career-dropzone--file {
+  border: 2px dashed #b8c9d0;
+  background: linear-gradient(180deg, #f9fbfc 0%, #f3f7f9 100%);
+  padding: 28px 20px 16px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.sky-career-dropzone--file.has-file {
+  border-style: solid;
+  border-color: var(--lqd-color-primary, #fc9928);
+  background: #fffaf5;
+}
+
+.sky-career-dropzone--file.is-dragover,
+.sky-career-dropzone--cover.is-dragover {
+  border-color: var(--lqd-color-primary, #fc9928);
+  background: #fff8ef;
+  box-shadow: 0 0 0 3px rgba(252, 153, 40, 0.2);
+}
+
+.sky-career-dropzone__input {
+  position: absolute;
+  width: 0;
+  height: 0;
+  opacity: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.sky-career-dropzone__overlay {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  pointer-events: none;
+}
+
+.sky-career-dropzone__icon {
+  display: inline-flex;
+  color: var(--lqd-color-secondary, #0b4f5e);
+  opacity: 0.75;
+}
+
+.sky-career-dropzone__title {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--lqd-color-secondary, #0b4f5e);
+}
+
+.sky-career-dropzone__hint {
+  font-size: 13px;
+  color: #626974;
+  max-width: 280px;
+  line-height: 1.4;
+}
+
+.sky-career-dropzone__browse {
+  margin-top: 8px;
+  padding: 8px 18px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--lqd-color-secondary, #0b4f5e);
+  background: #fff;
+  border: 2px solid var(--lqd-color-secondary, #0b4f5e);
+  border-radius: 6px;
+  cursor: pointer;
+  pointer-events: auto;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.sky-career-dropzone__browse:hover {
+  background: var(--lqd-color-secondary, #0b4f5e);
+  color: #fff;
+}
+
+.sky-career-dropzone__filename {
+  margin: 12px 0 0;
+  padding: 8px 12px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--lqd-color-secondary, #0b4f5e);
+  background: rgba(252, 153, 40, 0.15);
+  border-radius: 6px;
+}
+
+.sky-career-dropzone__filename[hidden] {
+  display: none !important;
+}
+
+/* Lettre de motivation : textarea dans zone dashed */
+.sky-career-dropzone--cover {
+  border: 2px dashed #b8c9d0;
+  background: #f9fbfc;
+  min-height: 160px;
+}
+
+.sky-career-dropzone--cover.is-focused,
+.sky-career-dropzone--cover.is-filled {
+  border-color: var(--lqd-color-primary, #fc9928);
+  border-style: solid;
+  background: #fff;
+}
+
+.sky-career-dropzone--cover .sky-career-dropzone__textarea {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  min-height: 140px;
+  padding: 14px;
+  border: none;
+  border-radius: 8px;
+  background: transparent;
+  resize: vertical;
+}
+
+.sky-career-dropzone--cover .sky-career-dropzone__textarea:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.sky-career-dropzone--cover .sky-career-dropzone__overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  justify-content: center;
+  padding: 16px;
+  transition: opacity 0.25s ease;
+}
+
+.sky-career-dropzone--cover.is-filled .sky-career-dropzone__overlay,
+.sky-career-dropzone--cover.is-focused .sky-career-dropzone__overlay {
+  opacity: 0;
+  visibility: hidden;
+}
+
+/* Bouton submit : état chargement */
+.sky-career-form__submit-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 52px;
+  padding: 14px 24px;
+  border: 2px solid var(--lqd-color-secondary, #0b4f5e) !important;
+  transition: opacity 0.2s ease, background 0.2s ease;
+}
+
+.sky-career-form__submit-btn:hover:not(:disabled) {
+  background: var(--lqd-color-secondary, #0b4f5e) !important;
+  color: #fff !important;
+}
+
+.sky-career-form__submit-btn.is-loading {
+  opacity: 0.92;
+  cursor: wait;
+}
+
+.sky-career-form__submit-loading {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.sky-career-form__submit-btn.is-loading .sky-career-form__submit-loading {
+  display: inline-flex;
+}
+
+.sky-career-form__submit-btn.is-loading .sky-career-form__submit-text {
+  display: none;
+}
+
+.sky-career-form__spinner {
+  width: 20px;
+  height: 20px;
+  border: 2px solid rgba(11, 79, 94, 0.2);
+  border-top-color: var(--lqd-color-secondary, #0b4f5e);
+  border-radius: 50%;
+  animation: sky-career-spin 0.7s linear infinite;
+}
+
+@keyframes sky-career-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.sky-career-form__consent {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin: 0 0 20px;
+  font-size: 13px;
+  line-height: 1.45;
+  color: #626974;
+}
+
+.sky-career-form__consent input {
+  margin-top: 4px;
+  flex-shrink: 0;
+}
+
+.sky-career-form__submit {
+  margin: 0;
+}
+
+.sky-career-form__required {
+  color: #dc2626;
+  margin-left: 2px;
+  font-weight: 700;
+}
+
+.sky-career-form__error {
+  display: block;
+  margin-top: 6px;
+  font-size: 12px;
+  font-weight: 500;
+  color: #dc2626;
+  line-height: 1.4;
+}
+
+.sky-career-form__error--client[hidden] {
+  display: none !important;
+}
+
+.sky-career-form__field.has-error .sky-career-form__control,
+.sky-career-form__field.has-error .sky-career-dropzone {
+  border-color: #dc2626;
+}
+
+.sky-career-form__field.has-error .sky-career-form__control:focus,
+.sky-career-form__field.has-error .sky-career-dropzone.is-dragover {
+  box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.2);
+}
+
+.sky-career-form__consent-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-top: 6px;
+}
+
+.sky-career-form__consent-row label {
+  font-size: 13px;
+  line-height: 1.45;
+  color: #626974;
+}
+
+.sky-career-form__field--consent .sky-career-form__label--consent {
+  display: block;
+  margin-bottom: 4px;
+}
+
+/* Toast notification */
+.sky-career-toast {
+  position: fixed;
+  top: 24px;
+  right: 24px;
+  left: 24px;
+  z-index: 100000;
+  max-width: 420px;
+  margin-left: auto;
+  opacity: 0;
+  transform: translateY(-12px);
+  visibility: hidden;
+  transition: opacity 0.35s ease, transform 0.35s ease, visibility 0.35s;
+}
+
+.sky-career-toast[hidden] {
+  display: none !important;
+}
+
+.sky-career-toast.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+  visibility: visible;
+}
+
+.sky-career-toast__inner {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 18px 20px;
+  background: #fff;
+  border-radius: 12px;
+  border-left: 4px solid var(--lqd-color-primary, #fc9928);
+  box-shadow: 0 12px 40px rgba(11, 79, 94, 0.2);
+}
+
+.sky-career-toast__icon {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #f0fdf4;
+  color: #16a34a;
+}
+
+.sky-career-toast__title {
+  margin: 0 0 6px;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--lqd-color-secondary, #0b4f5e);
+}
+
+.sky-career-toast__text {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.5;
+  color: #626974;
+}
+
+.sky-career-toast__close {
+  flex-shrink: 0;
+  margin-left: auto;
+  padding: 4px;
+  border: none;
+  background: transparent;
+  color: #94a3b8;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.sky-career-toast__close:hover {
+  color: var(--lqd-color-secondary, #0b4f5e);
+  background: #f1f5f9;
+}
+
+@media (max-width: 575px) {
+  .sky-career-toast {
+    right: 16px;
+    left: 16px;
+    max-width: none;
+  }
+}

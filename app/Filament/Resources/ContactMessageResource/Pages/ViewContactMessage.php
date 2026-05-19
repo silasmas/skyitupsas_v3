@@ -1,0 +1,22 @@
+<?php
+
+namespace App\Filament\Resources\ContactMessageResource\Pages;
+
+use App\Filament\Resources\ContactMessageResource;
+use Filament\Actions;
+use Filament\Resources\Pages\ViewRecord;
+
+class ViewContactMessage extends ViewRecord
+{
+    protected static string $resource = ContactMessageResource::class;
+
+    /**
+     * Actions disponibles sur la fiche message.
+     */
+    protected function getHeaderActions(): array
+    {
+        return [
+            Actions\EditAction::make(),
+        ];
+    }
+}

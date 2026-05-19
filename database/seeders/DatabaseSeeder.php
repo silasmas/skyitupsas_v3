@@ -27,6 +27,8 @@ class DatabaseSeeder extends Seeder
             BlogSeeder::class,
             ContactSeeder::class,
             RealisationSeeder::class,
+            PartnerSeeder::class,
+            JobOfferSeeder::class,
         ]);
     }
 }

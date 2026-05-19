@@ -3,7 +3,6 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\TeamMemberResource\Pages;
-use App\Filament\Resources\TeamMemberResource\RelationManagers;
 use App\Models\TeamMember;
 use Filament\Forms;
 use Filament\Forms\Form;
@@ -60,6 +59,9 @@ class TeamMemberResource extends Resource
                         Forms\Components\TextInput::make('role')
                             ->required()
                             ->maxLength(255),
+                        Forms\Components\Textarea::make('bio')
+                            ->rows(4)
+                            ->columnSpanFull(),
                     ])
                     ->columns(2),
                 Forms\Components\Section::make('Réseaux sociaux')
@@ -131,6 +133,10 @@ class TeamMemberResource extends Resource
                         Infolists\Components\TextEntry::make('role')
                             ->label('Rôle')
                             ->getStateUsing(fn ($record) => is_array($record->role) ? ($record->role[app()->getLocale()] ?? Arr::first($record->role) ?? '') : (string) $record->role),
+                        Infolists\Components\TextEntry::make('bio')
+                            ->label('Bio')
+                            ->columnSpanFull()
+                            ->getStateUsing(fn ($record) => is_array($record->bio ?? null) ? ($record->bio[app()->getLocale()] ?? Arr::first($record->bio ?? []) ?? '') : (string) ($record->bio ?? '')),
                         Infolists\Components\TextEntry::make('slug')->label('Slug'),
                     ])
                     ->columns(2),
@@ -161,30 +167,35 @@ class TeamMemberResource extends Resource
                             ->label('Atouts')
                             ->getStateUsing(function ($record) {
                                 $val = $record->assets ?? [];
+
                                 return is_array($val) ? implode(', ', array_map(fn ($v) => is_array($v) ? ($v['item'] ?? '') : $v, $val)) : (string) $val;
                             }),
                         Infolists\Components\TextEntry::make('experience')
                             ->label('Expérience')
                             ->getStateUsing(function ($record) {
                                 $val = $record->experience ?? [];
+
                                 return is_array($val) ? implode(', ', array_map(fn ($v) => is_array($v) ? ($v['item'] ?? '') : $v, $val)) : (string) $val;
                             }),
                         Infolists\Components\TextEntry::make('diplomas')
                             ->label('Diplômes')
                             ->getStateUsing(function ($record) {
                                 $val = $record->diplomas ?? [];
+
                                 return is_array($val) ? implode(', ', array_map(fn ($v) => is_array($v) ? ($v['item'] ?? '') : $v, $val)) : (string) $val;
                             }),
                         Infolists\Components\TextEntry::make('expertises')
                             ->label('Expertises')
                             ->getStateUsing(function ($record) {
                                 $val = $record->expertises ?? [];
+
                                 return is_array($val) ? implode(', ', array_map(fn ($v) => is_array($v) ? ($v['item'] ?? '') : $v, $val)) : (string) $val;
                             }),
                         Infolists\Components\TextEntry::make('work_countries')
                             ->label('Pays')
                             ->getStateUsing(function ($record) {
                                 $val = $record->work_countries ?? [];
+
                                 return is_array($val) ? implode(', ', array_map(fn ($v) => is_array($v) ? ($v['item'] ?? '') : $v, $val)) : (string) $val;
                             }),
                     ])

@@ -17,27 +17,39 @@ class ServiceSeeder extends Seeder
         $services = [
             [
                 'slug' => 'service-consulting',
+                'featured_image' => 'services/service-1.png',
                 'title' => ['fr' => $serviceFr['title1'], 'en' => $serviceEn['title1']],
-                'subtitle' => ['fr' => $serviceFr['title1_'], 'en' => $serviceEn['title1_']],
+                'subtitle' => ['fr' => '', 'en' => ''],
                 'description' => ['fr' => $serviceFr['content1'], 'en' => $serviceEn['content1']],
                 'content' => [
+                    'fr' => ['content1' => $serviceFr['content1']],
+                    'en' => ['content1' => $serviceEn['content1']],
+                ],
+                'sort_order' => 1,
+            ],
+            [
+                'slug' => 'support-et-assistance',
+                'featured_image' => 'welcomer.jpg',
+                'title' => ['fr' => $serviceFr['title1_'], 'en' => $serviceEn['title1_']],
+                'subtitle' => ['fr' => '', 'en' => ''],
+                'description' => ['fr' => $serviceFr['content1_1'], 'en' => $serviceEn['content1_1']],
+                'content' => [
                     'fr' => [
-                        'content1' => $serviceFr['content1'],
                         'content1_1' => $serviceFr['content1_1'],
                         'content1_2' => $serviceFr['content1_2'],
                         'content1_3' => $serviceFr['content1_3'],
                     ],
                     'en' => [
-                        'content1' => $serviceEn['content1'],
                         'content1_1' => $serviceEn['content1_1'],
                         'content1_2' => $serviceEn['content1_2'],
                         'content1_3' => $serviceEn['content1_3'],
                     ],
                 ],
-                'sort_order' => 1,
+                'sort_order' => 2,
             ],
             [
                 'slug' => 'solutions-numeriques-logiciels',
+                'featured_image' => 'services/service-2.jpg',
                 'title' => ['fr' => $serviceFr['title2'], 'en' => $serviceEn['title2']],
                 'subtitle' => ['fr' => '', 'en' => ''],
                 'description' => ['fr' => $serviceFr['content2_1'], 'en' => $serviceEn['content2_1']],
@@ -53,10 +65,11 @@ class ServiceSeeder extends Seeder
                         'content2_3' => $serviceEn['content2_3'],
                     ],
                 ],
-                'sort_order' => 2,
+                'sort_order' => 3,
             ],
             [
                 'slug' => 'infrastructure-informatique',
+                'featured_image' => 'services/service-3.jpg',
                 'title' => ['fr' => $serviceFr['title3'], 'en' => $serviceEn['title3']],
                 'subtitle' => ['fr' => '', 'en' => ''],
                 'description' => ['fr' => $serviceFr['content3_1']['content1'] ?? '', 'en' => $serviceEn['content3_1']['content1'] ?? ''],
@@ -64,10 +77,11 @@ class ServiceSeeder extends Seeder
                     'fr' => $serviceFr['content3_1'],
                     'en' => $serviceEn['content3_1'],
                 ],
-                'sort_order' => 3,
+                'sort_order' => 4,
             ],
             [
                 'slug' => 'formation-transformation-digitale',
+                'featured_image' => 'services/service-4.jpg',
                 'title' => ['fr' => $serviceFr['title4'], 'en' => $serviceEn['title4']],
                 'subtitle' => ['fr' => '', 'en' => ''],
                 'description' => ['fr' => $serviceFr['content4']['text'] ?? '', 'en' => $serviceEn['content4']['text'] ?? ''],
@@ -75,10 +89,11 @@ class ServiceSeeder extends Seeder
                     'fr' => $serviceFr['content4'],
                     'en' => $serviceEn['content4'],
                 ],
-                'sort_order' => 4,
+                'sort_order' => 5,
             ],
             [
                 'slug' => 'service-assistance',
+                'featured_image' => 'services/service-5.jpg',
                 'title' => ['fr' => $serviceFr['title5'], 'en' => $serviceEn['title5']],
                 'subtitle' => ['fr' => $serviceFr['inner_title5'], 'en' => $serviceEn['inner_title5']],
                 'description' => ['fr' => $serviceFr['content5_1'], 'en' => $serviceEn['content5_1']],
@@ -94,7 +109,7 @@ class ServiceSeeder extends Seeder
                         'content5_3' => $serviceEn['content5_3'],
                     ],
                 ],
-                'sort_order' => 5,
+                'sort_order' => 6,
             ],
         ];
 

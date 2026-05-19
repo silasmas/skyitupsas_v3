@@ -19,6 +19,7 @@ class TeamMember extends Model
         'linkedin',
         'name',
         'role',
+        'bio',
         'assets',
         'experience',
         'diplomas',
@@ -31,6 +32,7 @@ class TeamMember extends Model
     public array $translatable = [
         'name',
         'role',
+        'bio',
         'assets',
         'experience',
         'diplomas',

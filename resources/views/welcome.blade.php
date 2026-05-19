@@ -6,7 +6,7 @@
 
         {!! \Artesaos\SEOTools\Facades\SEOMeta::generate() !!}
         {!! \Artesaos\SEOTools\Facades\OpenGraph::generate() !!}
-        {!! \Artesaos\SEOTools\Facades\Twitter::generate() !!}
+        {!! \Artesaos\SEOTools\Facades\TwitterCard::generate() !!}
 
         <title>{{ config('app.name', 'Laravel') }}</title>
 
