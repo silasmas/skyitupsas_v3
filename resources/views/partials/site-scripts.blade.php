@@ -1,7 +1,3 @@
-@push('head')
-<link rel="stylesheet" href="{{ asset('css/sky-site.css') }}">
-@endpush
-
 <script>
     window.skySite = {
         searchUrl: @json(route('search', ['locale' => app()->getLocale()])),

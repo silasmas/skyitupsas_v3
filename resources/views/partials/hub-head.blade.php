@@ -42,6 +42,7 @@
 
 
 <link rel="stylesheet" href="{{ $h('css/sky-hub-bridge.css') }}">
+<link rel="stylesheet" href="{{ asset('css/sky-site.css') }}">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

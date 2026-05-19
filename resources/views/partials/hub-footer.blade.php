@@ -5,9 +5,10 @@
 <footer id="site-footer" class="main-footer link-white-50 link-14 bg-center bg-inherit bg-green-700 bg-no-repeat" data-sticky-footer="true" data-sticky-footer-options='{"shadow":"2"}'>
     <section class="lqd-section module-top pt-60">
         <div class="container">
-            <div class="row">
-                <div class="col col-12 col-xl-4">
-                    <div class="mr-50 mb-30 flex flex-col">
+            <div class="row sky-footer-grid">
+                {{-- Colonne 1 : marque & réseaux sociaux --}}
+                <div class="col col-12 col-md-6 col-xl-3 sky-footer-grid__col">
+                    <div class="sky-footer-brand mb-30 flex flex-col">
                         <div class="mb-35">
                             <a href="{{ route('home') }}">
                                 @if (file_exists(public_path('assets/img/logo_text.png')))
@@ -68,79 +69,90 @@
                         </div>
                     </div>
                 </div>
-                <div class="col col-12 col-md-6 col-xl-4">
-                    <div class="ml-60 mb-30 flex flex-col items-start sm:ml-0 module-contact">
+
+                {{-- Colonne 2 : coordonnées --}}
+                <div class="col col-12 col-md-6 col-xl-3 sky-footer-grid__col">
+                    <div class="sky-footer-contact mb-30 flex flex-col items-start module-contact">
                         <div class="ld-fancy-heading relative">
                             <h3 class="ld-fh-element mb-2em text-white text-16 inline-block relative">{{ __('site.footer_contact') }}</h3>
                         </div>
                         <div class="mb-30 pb-10 iconbox relative items-center">
                             <div class="contents flex flex-col">
                                 <h3 class="lqd-iconbox-heading opacity-50 text-white text-13 font-normal leading-1em mb-0">Email</h3>
-                                <p><a class="text-16 text-white hover:text-primary" href="mailto:{{ $sky['email'] }}">{{ $sky['email'] }}</a></p>
+                                <p class="mb-0"><a class="text-16 text-white hover:text-primary" href="mailto:{{ $sky['email'] }}">{{ $sky['email'] }}</a></p>
                             </div>
                         </div>
                         <div class="mb-30 pb-10 iconbox relative items-center">
                             <div class="contents flex flex-col">
                                 <h3 class="lqd-iconbox-heading opacity-50 text-white text-13 font-normal leading-1em mb-0">{{ __('site.footer_phone') }}</h3>
-                                <p><a class="text-16 text-white hover:text-primary" href="tel:{{ $sky['phone_href'] }}">{{ $sky['phone'] }}</a></p>
+                                <p class="mb-0"><a class="text-16 text-white hover:text-primary" href="tel:{{ $sky['phone_href'] }}">{{ $sky['phone'] }}</a></p>
                             </div>
                         </div>
-                        <div class="mb-30 pb-10 iconbox relative items-center">
+                        <div class="mb-0 pb-10 iconbox relative items-center">
                             <div class="contents flex flex-col">
                                 <h3 class="lqd-iconbox-heading opacity-50 text-white text-13 font-normal leading-1em mb-0">{{ app()->getLocale() === 'en' ? 'Address' : 'Adresse' }}</h3>
-                                <p class="text-16 text-white">{{ $sky['address'] }}</p>
+                                <p class="text-16 text-white mb-0">{{ $sky['address'] }}</p>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col col-12 col-md-6 col-xl-4 p-0">
-                    <div class="module-list">
-                        <div class="container-fluid">
-                            <div class="row items-start">
-                                <div class="col col-12 mb-30">
-                                    <div class="ld-fancy-heading relative">
-                                        <h3 class="ld-fh-element mb-1em text-white text-16 inline-block relative">{{ __('site.footer_newsletter') }}</h3>
-                                    </div>
-                                    <p class="text-white opacity-50 text-14 mb-10">{{ __('site.footer_newsletter_hint') }}</p>
-                                    <form method="post" action="{{ route('newsletter.subscribe', ['locale' => app()->getLocale()]) }}" class="sky-newsletter-form" data-sky-newsletter-form>
-                                        @csrf
-                                        <div class="sky-newsletter-form__row">
-                                            <input
-                                                type="email"
-                                                name="email"
-                                                class="sky-newsletter-form__input"
-                                                value="{{ old('email') }}"
-                                                placeholder="{{ __('site.footer_email_placeholder') }}"
-                                                required
-                                                autocomplete="email"
-                                            >
-                                            <button type="submit" class="sky-newsletter-form__btn" data-sky-newsletter-submit>
-                                                <span data-sky-newsletter-submit-text>{{ __('site.newsletter_submit') }}</span>
-                                                <span data-sky-newsletter-submit-loading hidden>{{ __('site.newsletter_submitting') }}</span>
-                                            </button>
-                                        </div>
-                                        @error('email')
-                                            <span class="sky-newsletter-form__error" role="alert">{{ $message }}</span>
-                                        @enderror
-                                    </form>
+
+                {{-- Colonne 3 : liens --}}
+                <div class="col col-12 col-md-6 col-xl-3 sky-footer-grid__col">
+                    <div class="sky-footer-links mb-30">
+                        <div class="ld-fancy-heading relative">
+                            <h3 class="ld-fh-element mb-2em text-white text-16 inline-block relative">{{ __('site.footer_links') }}</h3>
+                        </div>
+                        <nav class="lqd-fancy-menu lqd-custom-menu relative lqd-menu-td-none" aria-label="{{ __('site.footer_links') }}">
+                            <ul class="reset-ul sky-footer-links__list">
+                                <li class="mb-10"><a href="{{ route('home') }}">{{ __('site.nav_home') }}</a></li>
+                                <li class="mb-10"><a href="{{ route('about') }}">{{ __('site.nav_about') }}</a></li>
+                                <li class="mb-10"><a href="{{ route('services') }}">{{ __('site.nav_services') }}</a></li>
+                                <li class="mb-10"><a href="{{ route('careers') }}">{{ __('site.nav_careers') }}</a></li>
+                                <li class="mb-10"><a href="{{ route('realisations') }}">{{ __('site.nav_realisations') }}</a></li>
+                                <li class="mb-10"><a href="{{ route('contact') }}">{{ __('site.nav_contact') }}</a></li>
+                                <li><a href="{{ url('/admin') }}">{{ __('site.footer_admin') }}</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+
+                {{-- Colonne 4 : newsletter (dernière colonne) --}}
+                <div class="col col-12 col-md-6 col-xl-3 sky-footer-grid__col">
+                    <div class="sky-footer-newsletter mb-30">
+                        <div class="ld-fancy-heading relative">
+                            <h3 class="ld-fh-element mb-1em text-white text-16 inline-block relative">{{ __('site.footer_newsletter') }}</h3>
+                        </div>
+                        <p class="sky-footer-newsletter__hint text-white opacity-50 text-14">{{ __('site.footer_newsletter_hint') }}</p>
+                        <div class="sky-newsletter-card">
+                            <form method="post" action="{{ route('newsletter.subscribe', ['locale' => app()->getLocale()]) }}" class="sky-newsletter-form sky-newsletter-form--footer" data-sky-newsletter-form>
+                                @csrf
+                                <label class="sky-newsletter-form__label sky-sr-only" for="sky-footer-newsletter-email">{{ __('site.footer_email_placeholder') }}</label>
+                                <div class="sky-newsletter-form__field">
+                                    <span class="sky-newsletter-form__icon" aria-hidden="true">
+                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z" fill="currentColor"/>
+                                        </svg>
+                                    </span>
+                                    <input
+                                        id="sky-footer-newsletter-email"
+                                        type="email"
+                                        name="email"
+                                        class="sky-newsletter-form__input"
+                                        value="{{ old('email') }}"
+                                        placeholder="{{ __('site.footer_email_placeholder') }}"
+                                        required
+                                        autocomplete="email"
+                                    >
                                 </div>
-                                <div class="col col-12 mb-30">
-                                    <div class="ld-fancy-heading relative">
-                                        <h3 class="ld-fh-element mb-2em text-white text-16 inline-block relative">{{ __('site.footer_links') }}</h3>
-                                    </div>
-                                    <div class="lqd-fancy-menu lqd-custom-menu relative lqd-menu-td-none">
-                                        <ul class="reset-ul">
-                                            <li class="mb-10"><a href="{{ route('home') }}">{{ __('site.nav_home') }}</a></li>
-                                            <li class="mb-10"><a href="{{ route('about') }}">{{ __('site.nav_about') }}</a></li>
-                                            <li class="mb-10"><a href="{{ route('services') }}">{{ __('site.nav_services') }}</a></li>
-                                            <li class="mb-10"><a href="{{ route('careers') }}">{{ __('site.nav_careers') }}</a></li>
-                                            <li class="mb-10"><a href="{{ route('realisations') }}">{{ __('site.nav_realisations') }}</a></li>
-                                            <li class="mb-10"><a href="{{ route('contact') }}">{{ __('site.nav_contact') }}</a></li>
-                                            <li><a href="{{ url('/admin') }}">{{ __('site.footer_admin') }}</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
+                                <button type="submit" class="sky-newsletter-form__btn" data-sky-newsletter-submit>
+                                    <span data-sky-newsletter-submit-text>{{ __('site.newsletter_submit') }}</span>
+                                    <span class="sky-newsletter-form__btn-loading" data-sky-newsletter-submit-loading hidden>{{ __('site.newsletter_submitting') }}</span>
+                                </button>
+                                @error('email')
+                                    <span class="sky-newsletter-form__error" role="alert">{{ $message }}</span>
+                                @enderror
+                            </form>
                         </div>
                     </div>
                 </div>
