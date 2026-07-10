@@ -1,41 +1,70 @@
 <?php
 
-use App\Http\Resources\AboutResource;
-use App\Http\Resources\BlogResource;
-use App\Http\Resources\ContactResource;
-use App\Http\Resources\RealisationResource;
-use App\Http\Resources\ServiceResource;
-use App\Http\Resources\TeamMemberResource;
-use App\Models\About;
-use App\Models\Blog;
-use App\Models\Contact;
-use App\Models\Realisation;
-use App\Models\Service;
-use App\Models\TeamMember;
+use App\Http\Controllers\Api\AboutController;
+use App\Http\Controllers\Api\BlogController;
+use App\Http\Controllers\Api\ContactController;
+use App\Http\Controllers\Api\ContactMessageController;
+use App\Http\Controllers\Api\JobApplicationController;
+use App\Http\Controllers\Api\JobOfferController;
+use App\Http\Controllers\Api\NewsletterController;
+use App\Http\Controllers\Api\PartnerController;
+use App\Http\Controllers\Api\RealisationController;
+use App\Http\Controllers\Api\SearchController;
+use App\Http\Controllers\Api\ServiceController;
+use App\Http\Controllers\Api\TeamMemberController;
 use Illuminate\Support\Facades\Route;
 
-Route::middleware('locale')->group(function () {
-    Route::get('/team-members', fn () => TeamMemberResource::collection(TeamMember::where('is_active', true)->orderBy('sort_order')->get()));
-    Route::get('/team-members/{slug}', fn (string $slug) => new TeamMemberResource(TeamMember::where('slug', $slug)->where('is_active', true)->firstOrFail()));
-    Route::delete('/team-members/{slug}', fn (string $slug) => TeamMember::where('slug', $slug)->firstOrFail()->delete() ? response()->noContent() : abort(500))->name('api.team-members.destroy');
+/*
+|--------------------------------------------------------------------------
+| API v1 (headless)
+|--------------------------------------------------------------------------
+|
+| Endpoints consommés par le frontend Next.js. La locale est résolue par le
+| middleware `locale` via `?locale=fr|en` ou l'en-tête `X-Locale`.
+|
+*/
 
-    Route::get('/abouts', fn () => AboutResource::collection(About::where('is_active', true)->orderBy('sort_order')->get()));
-    Route::get('/abouts/{slug}', fn (string $slug) => new AboutResource(About::where('slug', $slug)->where('is_active', true)->firstOrFail()));
-    Route::delete('/abouts/{slug}', fn (string $slug) => About::where('slug', $slug)->firstOrFail()->delete() ? response()->noContent() : abort(500))->name('api.abouts.destroy');
+Route::prefix('v1')->name('api.v1.')->middleware('locale')->group(function () {
+    // Contenu en lecture seule
+    Route::get('/abouts', [AboutController::class, 'index'])->name('abouts.index');
+    Route::get('/abouts/{slug}', [AboutController::class, 'show'])->name('abouts.show');
 
-    Route::get('/services', fn () => ServiceResource::collection(Service::where('is_active', true)->orderBy('sort_order')->get()));
-    Route::get('/services/{slug}', fn (string $slug) => new ServiceResource(Service::where('slug', $slug)->where('is_active', true)->firstOrFail()));
-    Route::delete('/services/{slug}', fn (string $slug) => Service::where('slug', $slug)->firstOrFail()->delete() ? response()->noContent() : abort(500))->name('api.services.destroy');
+    Route::get('/services', [ServiceController::class, 'index'])->name('services.index');
+    Route::get('/services/{slug}', [ServiceController::class, 'show'])->name('services.show');
 
-    Route::get('/blogs', fn () => BlogResource::collection(Blog::where('is_active', true)->orderBy('sort_order')->get()));
-    Route::get('/blogs/{slug}', fn (string $slug) => new BlogResource(Blog::where('slug', $slug)->where('is_active', true)->firstOrFail()));
-    Route::delete('/blogs/{slug}', fn (string $slug) => Blog::where('slug', $slug)->firstOrFail()->delete() ? response()->noContent() : abort(500))->name('api.blogs.destroy');
+    Route::get('/realisations', [RealisationController::class, 'index'])->name('realisations.index');
+    Route::get('/realisations/{slug}', [RealisationController::class, 'show'])->name('realisations.show');
 
-    Route::get('/contacts', fn () => ContactResource::collection(Contact::where('is_active', true)->orderBy('sort_order')->get()));
-    Route::get('/contacts/{slug}', fn (string $slug) => new ContactResource(Contact::where('slug', $slug)->where('is_active', true)->firstOrFail()));
-    Route::delete('/contacts/{slug}', fn (string $slug) => Contact::where('slug', $slug)->firstOrFail()->delete() ? response()->noContent() : abort(500))->name('api.contacts.destroy');
+    Route::get('/blogs', [BlogController::class, 'index'])->name('blogs.index');
+    Route::get('/blogs/{slug}', [BlogController::class, 'show'])->name('blogs.show');
 
-    Route::get('/realisations', fn () => RealisationResource::collection(Realisation::where('is_active', true)->orderBy('sort_order')->get()));
-    Route::get('/realisations/{slug}', fn (string $slug) => new RealisationResource(Realisation::where('slug', $slug)->where('is_active', true)->firstOrFail()));
-    Route::delete('/realisations/{slug}', fn (string $slug) => Realisation::where('slug', $slug)->firstOrFail()->delete() ? response()->noContent() : abort(500))->name('api.realisations.destroy');
+    Route::get('/contacts', [ContactController::class, 'index'])->name('contacts.index');
+    Route::get('/contacts/{slug}', [ContactController::class, 'show'])->name('contacts.show');
+
+    Route::get('/team-members', [TeamMemberController::class, 'index'])->name('team-members.index');
+    Route::get('/team-members/{slug}', [TeamMemberController::class, 'show'])->name('team-members.show');
+
+    Route::get('/partners', [PartnerController::class, 'index'])->name('partners.index');
+    Route::get('/partners/{slug}', [PartnerController::class, 'show'])->name('partners.show');
+
+    Route::get('/job-offers', [JobOfferController::class, 'index'])->name('job-offers.index');
+    Route::get('/job-offers/{slug}', [JobOfferController::class, 'show'])->name('job-offers.show');
+
+    // Recherche instantanée
+    Route::get('/search', [SearchController::class, 'index'])
+        ->middleware('throttle:60,1')
+        ->name('search');
+
+    // Formulaires publics (écriture)
+    Route::post('/contact', [ContactMessageController::class, 'store'])
+        ->middleware('throttle:10,1')
+        ->name('contact.store');
+
+    Route::post('/newsletter', [NewsletterController::class, 'subscribe'])
+        ->middleware('throttle:15,1')
+        ->name('newsletter.subscribe');
+
+    Route::post('/job-offers/{slug}/applications', [JobApplicationController::class, 'store'])
+        ->middleware('throttle:8,1')
+        ->name('job-offers.applications.store');
 });

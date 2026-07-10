@@ -7,7 +7,7 @@ use App\Http\Resources\Concerns\ResolvesMediaUrls;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class RealisationResource extends JsonResource
+class PartnerResource extends JsonResource
 {
     use HasTranslations;
     use ResolvesMediaUrls;
@@ -19,14 +19,10 @@ class RealisationResource extends JsonResource
         return [
             'id' => $this->id,
             'slug' => $this->slug,
-            'title' => $this->formatTranslatable('title', $withTranslations),
-            'description' => $this->formatTranslatable('description', $withTranslations),
-            'content' => $this->formatTranslatable('content', $withTranslations),
-            'meta_description' => $this->formatTranslatable('meta_description', $withTranslations),
-            'featured_image' => $this->mediaUrl($this->featured_image),
-            'client' => $this->client,
-            'project_date' => $this->project_date?->format('Y-m-d'),
-            'project_url' => $this->project_url,
+            'name' => $this->formatTranslatable('name', $withTranslations),
+            'logo' => $this->mediaUrl($this->logo),
+            'website_url' => $this->website_url,
+            'open_in_new_tab' => $this->open_in_new_tab,
             'sort_order' => $this->sort_order,
             'is_active' => $this->is_active,
             'created_at' => $this->created_at?->toISOString(),

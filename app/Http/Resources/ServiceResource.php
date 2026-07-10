@@ -23,13 +23,11 @@ class ServiceResource extends JsonResource
             'content' => $this->formatTranslatable('content', $withTranslations),
             'meta_description' => $this->formatTranslatable('meta_description', $withTranslations),
             'icon' => $this->icon,
+            'featured_image' => $this->imageUrl(),
             'sort_order' => $this->sort_order,
             'is_active' => $this->is_active,
             'created_at' => $this->created_at?->toISOString(),
             'updated_at' => $this->updated_at?->toISOString(),
-            'links' => [
-                'delete' => route('api.services.destroy', $this->slug),
-            ],
         ];
     }
 }

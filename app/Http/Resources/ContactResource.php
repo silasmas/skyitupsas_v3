@@ -28,9 +28,6 @@ class ContactResource extends JsonResource
             'is_active' => $this->is_active,
             'created_at' => $this->created_at?->toISOString(),
             'updated_at' => $this->updated_at?->toISOString(),
-            'links' => [
-                'delete' => route('api.contacts.destroy', $this->slug),
-            ],
         ];
     }
 }

@@ -21,14 +21,18 @@ class SetLocaleFromRequest
             }
             App::setLocale($locale);
             URL::defaults(['locale' => $locale]);
-            $request->session()->put('locale', $locale);
+            if ($request->hasSession()) {
+                $request->session()->put('locale', $locale);
+            }
 
             return $next($request);
         }
 
+        $sessionLocale = $request->hasSession() ? $request->session()->get('locale') : null;
+
         $locale = $request->query('locale')
             ?? $request->header('X-Locale')
-            ?? $request->session()->get('locale');
+            ?? $sessionLocale;
 
         if ($locale && in_array($locale, $supported, true)) {
             App::setLocale($locale);
