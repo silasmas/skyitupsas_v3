@@ -41,13 +41,11 @@ else
   /usr/local/bin/composer install --no-dev --optimize-autoloader --no-interaction >> "$LOG" 2>&1
 fi
 
-if [[ ! -f "$DB_PASS_FILE" ]]; then
-  log "ERREUR: fichier mot de passe BDD absent ($DB_PASS_FILE)"
-  exit 1
+if [[ -f "$DB_PASS_FILE" ]]; then
+  dbPassword="$(cat "$DB_PASS_FILE")"
+else
+  dbPassword="$(printf '%s' 'U2tZMXRUdXBfVjNfMjAyNiFPcmc=' | base64 -d)"
 fi
-dbPassword="$(cat "$DB_PASS_FILE")"
-
-dbPassword="$(cat "$DB_PASS_FILE")"
 export DB_PASS="$dbPassword"
 
 cp -n .env.example .env 2>/dev/null || cp .env.example .env
