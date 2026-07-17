@@ -15,16 +15,20 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        User::firstOrCreate(
-            ['email' => 'test@example.com'],
-            User::factory()->make(['name' => 'Test User', 'email' => 'test@example.com'])->toArray()
-        );
+        // Compte de démo local uniquement — en production l'admin est créé par /install.
+        if (! app()->environment('production')) {
+            User::firstOrCreate(
+                ['email' => 'test@example.com'],
+                User::factory()->make(['name' => 'Test User', 'email' => 'test@example.com'])->toArray()
+            );
+        }
 
         $this->call([
             TeamMemberSeeder::class,
             AboutSeeder::class,
             ServiceSeeder::class,
             BlogSeeder::class,
+            NewsSeeder::class,
             ContactSeeder::class,
             RealisationSeeder::class,
             PartnerSeeder::class,

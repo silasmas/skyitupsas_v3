@@ -3,7 +3,6 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\BlogResource\Pages;
-use App\Filament\Resources\BlogResource\RelationManagers;
 use App\Models\Blog;
 use Filament\Forms;
 use Filament\Forms\Form;
@@ -13,8 +12,6 @@ use Filament\Resources\Concerns\Translatable;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Storage;
 
@@ -30,7 +27,7 @@ class BlogResource extends Resource
 
     protected static ?string $modelLabel = 'Article';
 
-    protected static ?string $pluralModelLabel = 'Blog';
+    protected static ?string $pluralModelLabel = 'Blog & Actualités';
 
     protected static ?string $recordTitleAttribute = 'title';
 
@@ -44,6 +41,12 @@ class BlogResource extends Resource
                             ->required()
                             ->maxLength(255)
                             ->unique(ignoreRecord: true),
+                        Forms\Components\Select::make('type')
+                            ->label('Type')
+                            ->options(Blog::TYPES)
+                            ->default(Blog::TYPE_BLOG)
+                            ->required()
+                            ->selectablePlaceholder(false),
                         Forms\Components\FileUpload::make('featured_image')
                             ->image()
                             ->directory('blogs')
@@ -102,10 +105,14 @@ class BlogResource extends Resource
                 Infolists\Components\Section::make('Paramètres')
                     ->schema([
                         Infolists\Components\TextEntry::make('slug'),
+                        Infolists\Components\TextEntry::make('type')
+                            ->label('Type')
+                            ->badge()
+                            ->formatStateUsing(fn (?string $state): string => Blog::TYPES[$state] ?? (string) $state),
                         Infolists\Components\TextEntry::make('sort_order'),
                         Infolists\Components\IconEntry::make('is_active')->boolean(),
                     ])
-                    ->columns(3),
+                    ->columns(4),
             ]);
     }
 
@@ -119,6 +126,12 @@ class BlogResource extends Resource
                 Tables\Columns\TextColumn::make('title')
                     ->searchable()
                     ->limit(40),
+                Tables\Columns\TextColumn::make('type')
+                    ->label('Type')
+                    ->badge()
+                    ->formatStateUsing(fn (?string $state): string => Blog::TYPES[$state] ?? (string) $state)
+                    ->color(fn (?string $state): string => $state === Blog::TYPE_NEWS ? 'warning' : 'primary')
+                    ->sortable(),
                 Tables\Columns\TextColumn::make('published_at')
                     ->dateTime()
                     ->sortable(),
@@ -138,7 +151,9 @@ class BlogResource extends Resource
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
-                //
+                Tables\Filters\SelectFilter::make('type')
+                    ->label('Type')
+                    ->options(Blog::TYPES),
             ])
             ->actions([
                 Tables\Actions\ViewAction::make(),

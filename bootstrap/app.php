@@ -14,6 +14,14 @@ return Application::configure(basePath: dirname(__DIR__))
     ->withMiddleware(function (Middleware $middleware): void {
         $middleware->alias([
             'locale' => \App\Http\Middleware\SetLocaleFromRequest::class,
+            'install.installed' => \App\Http\Middleware\EnsureApplicationIsInstalled::class,
+            'install.not_installed' => \App\Http\Middleware\EnsureApplicationIsNotInstalled::class,
+        ]);
+
+        // Tant que l'app n'est pas installée, toute requête web (hors /install et /up)
+        // est redirigée vers le wizard.
+        $middleware->web(append: [
+            \App\Http\Middleware\EnsureApplicationIsInstalled::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {

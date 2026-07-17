@@ -16,16 +16,24 @@ class BlogController extends AbstractContentController
     /**
      * Liste les articles publiés (actifs et à la date de publication passée).
      *
+     * Filtre optionnellement par type via le paramètre de requête `type`
+     * (valeurs acceptées : `blog` ou `news`). Toute autre valeur est ignorée.
+     *
      * @return AnonymousResourceCollection Collection d'articles sérialisés
      */
     public function index(): AnonymousResourceCollection
     {
-        $items = Blog::query()
+        $query = Blog::query()
             ->where('is_active', true)
             ->whereNotNull('published_at')
-            ->where('published_at', '<=', now())
-            ->orderByDesc('published_at')
-            ->get();
+            ->where('published_at', '<=', now());
+
+        $type = request()->query('type');
+        if (is_string($type) && array_key_exists($type, Blog::TYPES)) {
+            $query->ofType($type);
+        }
+
+        $items = $query->orderByDesc('published_at')->get();
 
         return BlogResource::collection($items);
     }

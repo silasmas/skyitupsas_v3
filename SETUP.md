@@ -13,21 +13,36 @@ Projet Laravel 12 avec Filament, multi-langue, gestion de fichiers et SEO.
 
 ## Installation
 
+### Option A — Wizard web (recommandé en production)
+
+```bash
+composer install
+cp .env.example .env
+# Document root = public/
+# Ouvrir https://votre-domaine/install
+```
+
+Le wizard configure `.env`, lance les migrations, optionnellement les seeders,
+crée le lien `storage`, génère les permissions **Filament Shield**, et crée
+le compte administrateur (`super_admin`). Voir **DEPLOY.md** pour le détail.
+
+### Option B — Ligne de commande (local / CI)
+
 ```bash
 composer install
 cp .env.example .env
 php artisan key:generate
 php artisan migrate
+php artisan storage:link
+php artisan shield:generate --all --option=permissions -n
+php artisan make:filament-user
+php artisan app:mark-installed
 npm install && npm run build
 ```
 
-## Créer un utilisateur admin Filament
-
-```bash
-php artisan make:filament-user
-```
-
 Accès admin : **/admin**
+
+Si l'environnement existait avant le wizard : `php artisan app:mark-installed`
 
 ## Multi-langue (Translatable)
 
