@@ -72,7 +72,7 @@
             <div class="field">
               <label for="APP_URL">URL backend (admin / API)</label>
               <input id="APP_URL" name="APP_URL" type="url" value="{{ old('APP_URL', $values['APP_URL']) }}" required>
-              <span class="hint">Ex. https://admin.skyitupsas.com</span>
+              <span class="hint">Ex. https://admin.skyitupsas.org</span>
             </div>
             <div class="field">
               <label for="APP_ENV">Environnement</label>
@@ -99,7 +99,7 @@
             <div class="field full">
               <label for="FRONTEND_URLS">Origines frontend autorisées (CORS)</label>
               <input id="FRONTEND_URLS" name="FRONTEND_URLS" value="{{ old('FRONTEND_URLS', $values['FRONTEND_URLS']) }}" required>
-              <span class="hint">Séparées par des virgules — ex. https://skyitupsas.com,https://www.skyitupsas.com</span>
+              <span class="hint">Séparées par des virgules — ex. https://skyitupsas.org,https://www.skyitupsas.org</span>
             </div>
 
             <div class="field">

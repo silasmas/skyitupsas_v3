@@ -4,8 +4,8 @@ Architecture cible :
 
 | Composant | URL | Projet |
 |-----------|-----|--------|
-| Frontend Next.js | `https://skyitupsas.com` | `skyitupsas-front` |
-| Backend Laravel (API + Filament) | `https://admin.skyitupsas.com` | `skyitupsas_v3` (branche `backend`) |
+| Frontend Next.js | `https://skyitupsas.org` | `skyitupsas-front` |
+| Backend Laravel (API + Filament) | `https://admin.skyitupsas.org` | `skyitupsas_v3` (branche `backend`) |
 
 ---
 
@@ -13,8 +13,8 @@ Architecture cible :
 
 ### A.1 — Hébergement Hostinger
 
-- [ ] Sous-domaine `admin.skyitupsas.com` créé, SSL activé
-- [ ] Domaine `skyitupsas.com` (et éventuellement `www`) prêt pour l’app Node
+- [ ] Sous-domaine `admin.skyitupsas.org` créé, SSL activé
+- [ ] Domaine `skyitupsas.org` (et éventuellement `www`) prêt pour l’app Node
 - [ ] Base MySQL créée (nom, utilisateur, mot de passe) — noter les identifiants
 - [ ] PHP ≥ 8.3 avec extensions : `pdo_mysql`, `mbstring`, `openssl`, `tokenizer`, `xml`, `ctype`, `json`, `fileinfo`, `curl`, `bcmath`
 - [ ] Accès SSH ou terminal hPanel
@@ -32,8 +32,8 @@ Architecture cible :
 |----------|-------------------|
 | `APP_ENV` | `production` |
 | `APP_DEBUG` | `false` |
-| `APP_URL` | `https://admin.skyitupsas.com` |
-| `FRONTEND_URLS` | `https://skyitupsas.com,https://www.skyitupsas.com` |
+| `APP_URL` | `https://admin.skyitupsas.org` |
+| `FRONTEND_URLS` | `https://skyitupsas.org,https://www.skyitupsas.org` |
 | `DB_*` | identifiants MySQL Hostinger |
 | `MAIL_*` | SMTP réel |
 | `FILESYSTEM_DISK` | `public` |
@@ -44,8 +44,8 @@ Ces valeurs peuvent être saisies **dans le wizard `/install`** (recommandé) ou
 
 | Variable | Exemple |
 |----------|---------|
-| `API_BASE_URL` | `https://admin.skyitupsas.com/api/v1` |
-| `NEXT_PUBLIC_API_BASE_URL` | `https://admin.skyitupsas.com/api/v1` |
+| `API_BASE_URL` | `https://admin.skyitupsas.org/api/v1` |
+| `NEXT_PUBLIC_API_BASE_URL` | `https://admin.skyitupsas.org/api/v1` |
 | `OPENAI_API_KEY` | clé secrète |
 | `OPENAI_BASE_URL` | `https://api.openai.com/v1` |
 | `OPENAI_MODEL` | `gpt-4o-mini` |
@@ -77,7 +77,7 @@ chown -R www-data:www-data storage bootstrap/cache   # adapter l'utilisateur web
 
 ### Étape 2 — Wizard d’installation (recommandé)
 
-1. Ouvrir **`https://admin.skyitupsas.com/install`**
+1. Ouvrir **`https://admin.skyitupsas.org/install`**
 2. **Prérequis** — corriger tout point en échec
 3. **Configuration** — APP_*, DB_*, MAIL_*, `FRONTEND_URLS` (test BDD inclus)
 4. **Base de données** — migrations + `storage:link` + permissions Shield  
@@ -89,8 +89,8 @@ Le fichier `storage/app/installed` est alors créé : le wizard devient inaccess
 
 ### Étape 3 — Vérifications backend
 
-- [ ] `https://admin.skyitupsas.com/admin` → login Filament OK
-- [ ] `https://admin.skyitupsas.com/api/v1/services` → JSON
+- [ ] `https://admin.skyitupsas.org/admin` → login Filament OK
+- [ ] `https://admin.skyitupsas.org/api/v1/services` → JSON
 - [ ] Upload média → fichier visible via `/storage/...`
 - [ ] Menu Shield (rôles / permissions) visible dans l’admin
 
@@ -124,7 +124,7 @@ Voir aussi la procédure Hostinger Node (fichier `server.js` + Git hPanel) :
 2. Créer l’app Node (démarrage : `server.js`, Node 20+)
 3. Définir les variables d’environnement **avant** le build
 4. `npm install && npm run build`
-5. Redémarrer l’app Node + SSL sur `skyitupsas.com`
+5. Redémarrer l’app Node + SSL sur `skyitupsas.org`
 
 Contrôles :
 
@@ -137,9 +137,9 @@ Contrôles :
 
 ## D. Ordre recommandé le jour J
 
-1. Backend sur `admin.skyitupsas.com` + wizard `/install`  
+1. Backend sur `admin.skyitupsas.org` + wizard `/install`  
 2. Vérifier l’API  
-3. Frontend Next sur `skyitupsas.com`  
+3. Frontend Next sur `skyitupsas.org`  
 4. Pointer le DNS / document root si bascule depuis l’ancien site  
 5. Tests bout-en-bout (formulaire, médias, admin)
 
