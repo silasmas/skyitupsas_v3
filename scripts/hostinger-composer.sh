@@ -9,6 +9,29 @@ log() {
   echo "[$(date -u +%Y-%m-%dT%H:%M:%SZ)] $*" | tee -a "$LOG"
 }
 
+composerBin() {
+  if command -v composer >/dev/null 2>&1; then
+    echo "composer"
+  else
+    echo "/usr/local/bin/composer"
+  fi
+}
+
+phpBin() {
+  for candidate in \
+    /opt/alt/php83/usr/bin/php \
+    /opt/alt/php84/usr/bin/php \
+    /usr/bin/php83 \
+    /usr/local/bin/php83 \
+    php; do
+    if [[ -x "$candidate" ]]; then
+      echo "$candidate"
+      return
+    fi
+  done
+  echo "php"
+}
+
 if [[ ! -f "$ADMIN/composer.json" ]]; then
   log "ERREUR: composer.json introuvable dans $ADMIN"
   exit 1
@@ -32,14 +55,9 @@ if [[ -d vendor ]] && [[ ! -f vendor/autoload.php ]]; then
   rm -rf vendor
 fi
 
-if command -v composer >/dev/null 2>&1; then
-  cBin="composer"
-else
-  cBin="/usr/local/bin/composer"
-fi
-
-log "Démarrage: $cBin install --no-dev"
-COMPOSER_MEMORY_LIMIT=-1 COMPOSER_DISABLE_XDEBUG=1 "$cBin" install \
+log "PHP CLI: $(phpBin) ($("$(phpBin)" -v | head -1))"
+log "Démarrage: $(phpBin) $(composerBin) install --no-dev"
+COMPOSER_MEMORY_LIMIT=-1 COMPOSER_DISABLE_XDEBUG=1 "$(phpBin)" "$(composerBin)" install \
   --no-dev \
   --optimize-autoloader \
   --no-interaction \
