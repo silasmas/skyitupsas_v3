@@ -58,5 +58,7 @@ log "Rechargement des caches..."
 "$PHP_BIN" artisan optimize:clear >> "$LOG" 2>&1 || true
 "$PHP_BIN" artisan optimize >> "$LOG" 2>&1 || true
 
+rm -f public/emergency-reset.php 2>/dev/null || true
+
 log "=== Réinitialisation admin terminée ==="
 exit 0
