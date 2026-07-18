@@ -31,6 +31,22 @@ composerBin() {
   fi
 }
 
+phpBin() {
+  for candidate in \
+    /opt/alt/php83/usr/bin/php \
+    /opt/alt/php84/usr/bin/php \
+    /usr/bin/php83 \
+    php; do
+    if [[ -x "$candidate" ]]; then
+      echo "$candidate"
+      return
+    fi
+  done
+  echo "php"
+}
+
+PHP_BIN="$(phpBin)"
+
 if [[ -f "$ADMIN/storage/app/installed" ]]; then
   log "Application déjà installée."
   exit 0
@@ -90,7 +106,7 @@ if ! is_done "env"; then
   dbPassword="$(printf '%s' 'U2tZMXRUdXBfVjNfMjAyNiFPcmc=' | base64 -d)"
   export DB_PASS="$dbPassword"
   cp -n .env.example .env 2>/dev/null || cp .env.example .env
-  php artisan key:generate --force >> "$LOG" 2>&1
+  "$PHP_BIN" artisan key:generate --force >> "$LOG" 2>&1
   perl -pi -e '
     s/^APP_ENV=.*/APP_ENV=production/;
     s/^APP_DEBUG=.*/APP_DEBUG=false/;
