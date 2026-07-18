@@ -52,20 +52,28 @@ class ResetAdminUserCommand extends Command
         Role::findOrCreate($superAdminRole);
         Role::findOrCreate($panelUserRole);
 
-        $user = User::query()->updateOrCreate(
-            ['email' => $email],
-            [
+        $now = now();
+        $userId = DB::table('users')->where('email', $email)->value('id');
+
+        if ($userId) {
+            DB::table('users')->where('id', $userId)->update([
                 'name' => $name,
-                'email_verified_at' => now(),
-            ]
-        );
+                'password' => Hash::make($password),
+                'email_verified_at' => $now,
+                'updated_at' => $now,
+            ]);
+        } else {
+            $userId = DB::table('users')->insertGetId([
+                'name' => $name,
+                'email' => $email,
+                'password' => Hash::make($password),
+                'email_verified_at' => $now,
+                'created_at' => $now,
+                'updated_at' => $now,
+            ]);
+        }
 
-        DB::table('users')->where('id', $user->id)->update([
-            'password' => Hash::make($password),
-            'updated_at' => now(),
-        ]);
-
-        $user->refresh();
+        $user = User::query()->findOrFail($userId);
         $user->syncRoles([$superAdminRole, $panelUserRole]);
 
         app(PermissionRegistrar::class)->forgetCachedPermissions();

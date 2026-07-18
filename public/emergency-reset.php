@@ -39,24 +39,32 @@ $panelUserRole = config('filament-shield.panel_user.name', 'panel_user');
 Role::findOrCreate($superAdminRole);
 Role::findOrCreate($panelUserRole);
 
-$user = User::query()->updateOrCreate(
-    ['email' => $email],
-    [
+$now = now();
+$userId = DB::table('users')->where('email', $email)->value('id');
+
+if ($userId) {
+    DB::table('users')->where('id', $userId)->update([
         'name' => $name,
-        'email_verified_at' => now(),
-    ]
-);
+        'password' => Hash::make($password),
+        'email_verified_at' => $now,
+        'updated_at' => $now,
+    ]);
+} else {
+    $userId = DB::table('users')->insertGetId([
+        'name' => $name,
+        'email' => $email,
+        'password' => Hash::make($password),
+        'email_verified_at' => $now,
+        'created_at' => $now,
+        'updated_at' => $now,
+    ]);
+}
 
-DB::table('users')->where('id', $user->id)->update([
-    'password' => Hash::make($password),
-    'updated_at' => now(),
-]);
-
-$user->refresh();
+$user = User::query()->findOrFail($userId);
 $user->syncRoles([$superAdminRole, $panelUserRole]);
 app(PermissionRegistrar::class)->forgetCachedPermissions();
 
-$hashOk = Hash::check($password, (string) $user->password);
+$hashOk = Hash::check($password, (string) DB::table('users')->where('id', $userId)->value('password'));
 $authOk = Auth::attempt(['email' => $email, 'password' => $password], false);
 Auth::logout();
 
@@ -64,7 +72,7 @@ echo "Admin: {$email}\n";
 echo 'Hash::check: '.($hashOk ? 'OK' : 'FAIL')."\n";
 echo 'Auth::attempt: '.($authOk ? 'OK' : 'FAIL')."\n";
 
-foreach (User::query()->orderBy('id')->get(['id', 'email']) as $row) {
+foreach (DB::table('users')->orderBy('id')->get(['id', 'email']) as $row) {
     echo "User #{$row->id}: {$row->email}\n";
 }
 
