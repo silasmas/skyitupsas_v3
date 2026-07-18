@@ -19,7 +19,7 @@ mark() {
   touch "$MARKER_DIR/$1"
 }
 
-done() {
+is_done() {
   test -f "$MARKER_DIR/$1"
 }
 
@@ -40,7 +40,7 @@ mkdir -p "$ADMIN"
 cd "$ADMIN" || exit 1
 
 # Étape 1 — Téléchargement et extraction
-if ! done "files"; then
+if ! is_done "files"; then
   if [[ -f composer.json ]]; then
     log "Sources déjà présentes — étape 1 ignorée."
     mark "files"
@@ -65,7 +65,7 @@ fi
 cd "$ADMIN" || exit 1
 
 # Étape 2 — Composer
-if ! done "vendor" && [[ ! -f vendor/autoload.php ]]; then
+if ! is_done "vendor" && [[ ! -f vendor/autoload.php ]]; then
   log "Étape 2/5 — composer install..."
   COMPOSER_MEMORY_LIMIT=-1 COMPOSER_DISABLE_XDEBUG=1 $(composerBin) install \
     --no-dev --optimize-autoloader --no-interaction >> "$LOG" 2>&1 || exit 1
@@ -77,7 +77,7 @@ fi
 mark "vendor" 2>/dev/null || true
 
 # Étape 3 — Configuration .env
-if ! done "env"; then
+if ! is_done "env"; then
   log "Étape 3/5 — configuration .env..."
   dbPassword="$(printf '%s' 'U2tZMXRUdXBfVjNfMjAyNiFPcmc=' | base64 -d)"
   export DB_PASS="$dbPassword"
@@ -110,7 +110,7 @@ if ! done "env"; then
 fi
 
 # Étape 4 — Migrations et seeders
-if ! done "database"; then
+if ! is_done "database"; then
   log "Étape 4/5 — migrations et seeders..."
   php artisan migrate --force >> "$LOG" 2>&1 || exit 1
   php artisan db:seed --force >> "$LOG" 2>&1 || exit 1
@@ -122,7 +122,7 @@ if ! done "database"; then
 fi
 
 # Étape 5 — Admin et verrou
-if ! done "finished"; then
+if ! is_done "finished"; then
   log "Étape 5/5 — compte admin et finalisation..."
   php <<PHP >> "$LOG" 2>&1
 <?php
