@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
-# Réinitialise le compte admin (mot de passe en clair — cast hashed du modèle User)
-# et synchronise AdminPanelProvider (logo login Filament).
+# Réinitialise le compte admin en base et synchronise AdminPanelProvider (logo login).
 set -uo pipefail
 
 ADMIN="${ADMIN_DIR:-/home/u514199474/domains/skyitupsas.org/public_html/admin}"
@@ -35,26 +34,21 @@ log "Mise à jour AdminPanelProvider.php (logo login)..."
 curl -fsSL -o app/Providers/Filament/AdminPanelProvider.php \
   "$REPO_RAW/app/Providers/Filament/AdminPanelProvider.php"
 
+log "Mise à jour ResetAdminUserCommand.php..."
+mkdir -p app/Console/Commands
+curl -fsSL -o app/Console/Commands/ResetAdminUserCommand.php \
+  "$REPO_RAW/app/Console/Commands/ResetAdminUserCommand.php"
+
 log "Réinitialisation du compte admin ${ADMIN_EMAIL}..."
-"$PHP_BIN" <<PHP >> "$LOG" 2>&1
-<?php
-require __DIR__ . '/vendor/autoload.php';
-\$app = require __DIR__ . '/bootstrap/app.php';
-\$app->make(Illuminate\Contracts\Console\Kernel::class)->bootstrap();
-\$email = '${ADMIN_EMAIL}';
-\$password = '${ADMIN_PASS}';
-\$role = Spatie\Permission\Models\Role::findOrCreate('super_admin');
-\$user = App\Models\User::updateOrCreate(
-    ['email' => \$email],
-    [
-        'name' => 'Administrateur',
-        'password' => \$password,
-        'email_verified_at' => now(),
-    ]
-);
-\$user->syncRoles([\$role->name]);
-echo "Admin réinitialisé : {\$email}\n";
-PHP
+export ADMIN_PASSWORD="${ADMIN_PASS}"
+"$PHP_BIN" artisan app:reset-admin \
+  --email="${ADMIN_EMAIL}" \
+  --password="${ADMIN_PASS}" \
+  --force >> "$LOG" 2>&1 || {
+  log "ÉCHEC app:reset-admin — voir le log."
+  tail -n 30 "$LOG" | tee -a "$LOG"
+  exit 1
+}
 
 log "Rechargement des caches..."
 "$PHP_BIN" artisan optimize:clear >> "$LOG" 2>&1 || true
