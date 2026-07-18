@@ -20,7 +20,6 @@ use Illuminate\Cookie\Middleware\EncryptCookies;
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
 use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\StartSession;
-use Illuminate\Support\HtmlString;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 
 class AdminPanelProvider extends PanelProvider
@@ -50,9 +49,12 @@ class AdminPanelProvider extends PanelProvider
                     ->defaultLocales(config('app.available_locales', ['fr', 'en'])),
                 FilamentShieldPlugin::make(),
                 EasyFooterPlugin::make()
-                    ->withSentence(new HtmlString(
-                        'Designed by <a href="https://silasmas.com" target="_blank" rel="noopener noreferrer">Sdev</a>'
-                    )),
+                    ->withLinks([
+                        [
+                            'title' => 'Designed by Sdev',
+                            'url' => 'https://silasmas.com',
+                        ],
+                    ]),
             ])
             ->middleware([
                 EncryptCookies::class,
