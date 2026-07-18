@@ -101,27 +101,60 @@ if [[ -f vendor/autoload.php ]] && ! is_done "vendor"; then
 fi
 
 # Étape 3 — Configuration .env
+if is_done "env" && [[ -f .env ]] && grep -q '^DB_CONNECTION=sqlite' .env; then
+  rm -f "$MARKER_DIR/env"
+fi
+
 if ! is_done "env"; then
   log "Étape 3/5 — configuration .env..."
   dbPassword="$(printf '%s' 'U2tZMXRUdXBfVjNfMjAyNiFPcmc=' | base64 -d)"
-  export DB_PASS="$dbPassword"
-  cp -n .env.example .env 2>/dev/null || cp .env.example .env
+  cp .env.example .env
   "$PHP_BIN" artisan key:generate --force >> "$LOG" 2>&1
-  perl -pi -e '
-    s/^APP_ENV=.*/APP_ENV=production/;
-    s/^APP_DEBUG=.*/APP_DEBUG=false/;
-    s|^APP_URL=.*|APP_URL=https://admin.skyitupsas.org|;
-    s|^FRONTEND_URLS=.*|FRONTEND_URLS=https://skyitupsas.org,https://www.skyitupsas.org|;
-    s/^DB_CONNECTION=.*/DB_CONNECTION=mysql/;
-    s/^# DB_HOST=.*/DB_HOST=127.0.0.1/;
-    s/^# DB_PORT=.*/DB_PORT=3306/;
-    s/^# DB_DATABASE=.*/DB_DATABASE=u514199474_skyitup_v3/;
-    s/^# DB_USERNAME=.*/DB_USERNAME=u514199474_skyitup_v3/;
-    s/^# DB_PASSWORD=.*/DB_PASSWORD=$ENV{DB_PASS}/;
-    s/^DB_PASSWORD=.*/DB_PASSWORD=$ENV{DB_PASS}/;
-    s/^FILESYSTEM_DISK=.*/FILESYSTEM_DISK=public/;
-    s/^LOG_LEVEL=.*/LOG_LEVEL=error/;
-  ' .env
+  cat > .env <<EOF
+APP_NAME="SkyITup SAS"
+APP_ENV=production
+APP_KEY=$(grep '^APP_KEY=' .env | cut -d= -f2-)
+APP_DEBUG=false
+APP_URL=https://admin.skyitupsas.org
+
+APP_LOCALE=fr
+APP_FALLBACK_LOCALE=en
+APP_FAKER_LOCALE=fr_FR
+
+FRONTEND_URLS=https://skyitupsas.org,https://www.skyitupsas.org
+
+APP_MAINTENANCE_DRIVER=file
+
+BCRYPT_ROUNDS=12
+
+LOG_CHANNEL=stack
+LOG_STACK=single
+LOG_DEPRECATIONS_CHANNEL=null
+LOG_LEVEL=error
+
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=u514199474_skyitup_v3
+DB_USERNAME=u514199474_skyitup_v3
+DB_PASSWORD=${dbPassword}
+
+SESSION_DRIVER=database
+SESSION_LIFETIME=120
+SESSION_ENCRYPT=false
+SESSION_PATH=/
+SESSION_DOMAIN=null
+
+BROADCAST_CONNECTION=log
+FILESYSTEM_DISK=public
+QUEUE_CONNECTION=database
+
+CACHE_STORE=database
+
+MAIL_MAILER=log
+MAIL_FROM_ADDRESS="contact@skyitupsas.org"
+MAIL_FROM_NAME="SkyITup SAS"
+EOF
   printf '%s\n' \
     '<IfModule mod_rewrite.c>' \
     'RewriteEngine On' \
@@ -134,12 +167,16 @@ if ! is_done "env"; then
 fi
 
 # Étape 4 — Migrations et seeders
+if is_done "database" && ! "$PHP_BIN" artisan migrate:status >> "$LOG" 2>&1; then
+  rm -f "$MARKER_DIR/database"
+fi
+
 if ! is_done "database"; then
   log "Étape 4/5 — migrations et seeders..."
-  php artisan migrate --force >> "$LOG" 2>&1 || exit 1
-  php artisan db:seed --force >> "$LOG" 2>&1 || exit 1
-  php artisan storage:link >> "$LOG" 2>&1 || true
-  php artisan shield:generate --all --option=permissions --no-interaction >> "$LOG" 2>&1 || exit 1
+  "$PHP_BIN" artisan migrate --force >> "$LOG" 2>&1 || exit 1
+  "$PHP_BIN" artisan db:seed --force >> "$LOG" 2>&1 || exit 1
+  "$PHP_BIN" artisan storage:link >> "$LOG" 2>&1 || true
+  "$PHP_BIN" artisan shield:generate --all --option=permissions --no-interaction >> "$LOG" 2>&1 || exit 1
   mark "database"
   log "Étape 4/5 terminée."
   exit 0
@@ -148,7 +185,7 @@ fi
 # Étape 5 — Admin et verrou
 if ! is_done "finished"; then
   log "Étape 5/5 — compte admin et finalisation..."
-  php <<PHP >> "$LOG" 2>&1
+  "$PHP_BIN" <<PHP >> "$LOG" 2>&1
 <?php
 require __DIR__ . '/vendor/autoload.php';
 \$app = require __DIR__ . '/bootstrap/app.php';
@@ -167,8 +204,8 @@ require __DIR__ . '/vendor/autoload.php';
 \$user->syncRoles([\$role->name]);
 echo "Admin créé : {\$email}\n";
 PHP
-  php artisan app:mark-installed >> "$LOG" 2>&1
-  php artisan optimize >> "$LOG" 2>&1
+  "$PHP_BIN" artisan app:mark-installed >> "$LOG" 2>&1
+  "$PHP_BIN" artisan optimize >> "$LOG" 2>&1
   mark "finished"
   log "=== Déploiement terminé avec succès ==="
   exit 0
