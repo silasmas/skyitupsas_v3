@@ -30,6 +30,10 @@ PHP_BIN="$(phpBin)"
 
 cd "$ADMIN" || exit 1
 
+log "Mise à jour User.php (fillable classique)..."
+curl -fsSL -o app/Models/User.php \
+  "$REPO_RAW/app/Models/User.php"
+
 log "Mise à jour AdminPanelProvider.php (logo login)..."
 curl -fsSL -o app/Providers/Filament/AdminPanelProvider.php \
   "$REPO_RAW/app/Providers/Filament/AdminPanelProvider.php"
