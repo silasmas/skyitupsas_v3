@@ -1,5 +1,9 @@
 <?php
 
+use App\Http\Middleware\EnsureApplicationIsInstalled;
+use App\Http\Middleware\EnsureApplicationIsNotInstalled;
+use App\Http\Middleware\RedirectPublicSiteToFrontend;
+use App\Http\Middleware\SetLocaleFromRequest;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
@@ -13,15 +17,16 @@ return Application::configure(basePath: dirname(__DIR__))
     )
     ->withMiddleware(function (Middleware $middleware): void {
         $middleware->alias([
-            'locale' => \App\Http\Middleware\SetLocaleFromRequest::class,
-            'install.installed' => \App\Http\Middleware\EnsureApplicationIsInstalled::class,
-            'install.not_installed' => \App\Http\Middleware\EnsureApplicationIsNotInstalled::class,
+            'locale' => SetLocaleFromRequest::class,
+            'install.installed' => EnsureApplicationIsInstalled::class,
+            'install.not_installed' => EnsureApplicationIsNotInstalled::class,
+            'redirect.public.to.frontend' => RedirectPublicSiteToFrontend::class,
         ]);
 
         // Tant que l'app n'est pas installée, toute requête web (hors /install et /up)
         // est redirigée vers le wizard.
         $middleware->web(append: [
-            \App\Http\Middleware\EnsureApplicationIsInstalled::class,
+            EnsureApplicationIsInstalled::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {

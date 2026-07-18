@@ -30,12 +30,16 @@ Route::prefix('install')
     });
 
 Route::get('/', function () {
+    if (app()->environment('production')) {
+        return redirect('/admin');
+    }
+
     return redirect('/'.config('app.locale', 'fr'));
 });
 
 Route::prefix('{locale}')
     ->where(['locale' => 'fr|en'])
-    ->middleware(['locale'])
+    ->middleware(['locale', 'redirect.public.to.frontend'])
     ->group(function () {
         Route::get('/', [SiteController::class, 'home'])->name('home');
         Route::get('/a-propos', [SiteController::class, 'about'])->name('about');
