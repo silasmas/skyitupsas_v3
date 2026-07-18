@@ -72,7 +72,8 @@ if ! is_done "vendor" && [[ ! -f vendor/autoload.php ]]; then
     exit 0
   fi
   log "Étape 2/5 — lancement composer install en arrière-plan..."
-  nohup bash -c "cd '$ADMIN' && COMPOSER_MEMORY_LIMIT=-1 COMPOSER_DISABLE_XDEBUG=1 $(composerBin) install --no-dev --optimize-autoloader --no-interaction --prefer-dist --no-progress >> '$LOG' 2>&1 && touch '$MARKER_DIR/vendor'" >> "$LOG" 2>&1 &
+  cBin="$(composerBin)"
+  nohup bash -c "cd '$ADMIN' && COMPOSER_MEMORY_LIMIT=-1 COMPOSER_DISABLE_XDEBUG=1 '$cBin' install --no-dev --optimize-autoloader --no-interaction --prefer-dist --no-progress >> '$LOG' 2>&1 && touch '$MARKER_DIR/vendor'" >> "$LOG" 2>&1 &
   mark "composer_started"
   exit 0
 fi
