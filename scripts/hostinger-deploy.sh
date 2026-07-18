@@ -197,7 +197,7 @@ require __DIR__ . '/vendor/autoload.php';
     ['email' => \$email],
     [
         'name' => 'Administrateur',
-        'password' => Illuminate\Support\Facades\Hash::make(\$password),
+        'password' => \$password,
         'email_verified_at' => now(),
     ]
 );

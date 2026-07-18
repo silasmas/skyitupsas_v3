@@ -6,7 +6,6 @@ use App\Models\User;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
-use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Role;
 use Throwable;
 
@@ -339,7 +338,7 @@ class InstallService
                 ['email' => $email],
                 [
                     'name' => $name,
-                    'password' => Hash::make($password),
+                    'password' => $password,
                     'email_verified_at' => now(),
                 ]
             );

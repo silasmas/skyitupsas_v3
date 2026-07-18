@@ -31,6 +31,10 @@ class AdminPanelProvider extends PanelProvider
             ->id('admin')
             ->path('admin')
             ->login()
+            ->brandName('SkyITup')
+            ->brandLogo(asset('assets/img/logo_text.png'))
+            ->brandLogoHeight('4rem')
+            ->favicon(asset('assets/img/logo.png'))
             ->colors([
                 'primary' => Color::Amber,
             ])
