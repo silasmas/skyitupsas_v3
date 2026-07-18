@@ -43,6 +43,7 @@ cd "$ADMIN" || exit 1
 if ! is_done "files"; then
   if [[ -f composer.json ]]; then
     log "Sources déjà présentes — étape 1 ignorée."
+    rm -f index.html default.php 2>/dev/null || true
     mark "files"
   else
     log "Étape 1/5 — téléchargement sources..."
@@ -64,17 +65,23 @@ fi
 
 cd "$ADMIN" || exit 1
 
-# Étape 2 — Composer
+# Étape 2 — Composer (arrière-plan : le cron Hostinger coupe les jobs longs)
 if ! is_done "vendor" && [[ ! -f vendor/autoload.php ]]; then
-  log "Étape 2/5 — composer install..."
-  COMPOSER_MEMORY_LIMIT=-1 COMPOSER_DISABLE_XDEBUG=1 $(composerBin) install \
-    --no-dev --optimize-autoloader --no-interaction >> "$LOG" 2>&1 || exit 1
-  mark "vendor"
-  log "Étape 2/5 terminée."
+  if [[ -f "$MARKER_DIR/composer_started" ]]; then
+    log "Étape 2/5 — composer en cours (attente)..."
+    exit 0
+  fi
+  log "Étape 2/5 — lancement composer install en arrière-plan..."
+  nohup bash -c "cd '$ADMIN' && COMPOSER_MEMORY_LIMIT=-1 COMPOSER_DISABLE_XDEBUG=1 $(composerBin) install --no-dev --optimize-autoloader --no-interaction --prefer-dist --no-progress >> '$LOG' 2>&1 && touch '$MARKER_DIR/vendor'" >> "$LOG" 2>&1 &
+  mark "composer_started"
   exit 0
 fi
 
-mark "vendor" 2>/dev/null || true
+if [[ -f vendor/autoload.php ]] && ! is_done "vendor"; then
+  mark "vendor"
+  log "Étape 2/5 terminée (vendor prêt)."
+  exit 0
+fi
 
 # Étape 3 — Configuration .env
 if ! is_done "env"; then
