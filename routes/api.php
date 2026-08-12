@@ -11,6 +11,8 @@ use App\Http\Controllers\Api\PartnerController;
 use App\Http\Controllers\Api\RealisationController;
 use App\Http\Controllers\Api\SearchController;
 use App\Http\Controllers\Api\ServiceController;
+use App\Http\Controllers\Api\ServiceModuleController;
+use App\Http\Controllers\Api\ServicePillarController;
 use App\Http\Controllers\Api\TeamMemberController;
 use Illuminate\Support\Facades\Route;
 
@@ -31,6 +33,10 @@ Route::prefix('v1')->name('api.v1.')->middleware('locale')->group(function () {
 
     Route::get('/services', [ServiceController::class, 'index'])->name('services.index');
     Route::get('/services/{slug}', [ServiceController::class, 'show'])->name('services.show');
+
+    Route::get('/service-pillars', [ServicePillarController::class, 'index'])->name('service-pillars.index');
+    Route::get('/service-pillars/{slug}', [ServicePillarController::class, 'show'])->name('service-pillars.show');
+    Route::get('/service-modules/{slug}', [ServiceModuleController::class, 'show'])->name('service-modules.show');
 
     Route::get('/realisations', [RealisationController::class, 'index'])->name('realisations.index');
     Route::get('/realisations/{slug}', [RealisationController::class, 'show'])->name('realisations.show');

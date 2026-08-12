@@ -5,6 +5,8 @@ namespace App\Services;
 use App\Models\JobOffer;
 use App\Models\Realisation;
 use App\Models\Service;
+use App\Models\ServiceModule;
+use App\Models\ServicePillar;
 use Illuminate\Support\Str;
 
 /**
@@ -29,12 +31,72 @@ class SiteSearchService
 
         $results = [];
 
+        $this->collectServicePillars($needle, $locale, $results);
+        $this->collectServiceModules($needle, $locale, $results);
         $this->collectServices($needle, $locale, $results);
         $this->collectRealisations($needle, $locale, $results);
         $this->collectJobOffers($needle, $locale, $results);
         $this->collectStaticPages($needle, $locale, $results);
 
         return array_slice($results, 0, $limit);
+    }
+
+    /**
+     * Ajoute les piliers de services correspondants.
+     *
+     * @param  string  $needle  Terme en minuscules
+     * @param  string  $locale  Langue
+     * @param  array<int, array<string, string>>  $results  Résultats cumulés
+     */
+    private function collectServicePillars(string $needle, string $locale, array &$results): void
+    {
+        $items = ServicePillar::query()->where('is_active', true)->orderBy('sort_order')->get();
+
+        foreach ($items as $pillar) {
+            $title = (string) $pillar->getTranslation('title', $locale);
+            $summary = strip_tags((string) $pillar->getTranslation('offer_summary', $locale, false));
+            if (! $this->matches($needle, $title.' '.$summary)) {
+                continue;
+            }
+            $results[] = [
+                'type' => 'service_pillar',
+                'title' => $title,
+                'excerpt' => Str::limit($summary, 100),
+                'url' => route('services', ['locale' => $locale]).'#'.$pillar->slug,
+            ];
+        }
+    }
+
+    /**
+     * Ajoute les modules de services correspondants.
+     *
+     * @param  string  $needle  Terme en minuscules
+     * @param  string  $locale  Langue
+     * @param  array<int, array<string, string>>  $results  Résultats cumulés
+     */
+    private function collectServiceModules(string $needle, string $locale, array &$results): void
+    {
+        $items = ServiceModule::query()
+            ->where('is_active', true)
+            ->with('pillar')
+            ->orderBy('sort_order')
+            ->get();
+
+        foreach ($items as $module) {
+            $title = (string) $module->getTranslation('title', $locale);
+            $summary = strip_tags((string) $module->getTranslation('summary_text', $locale, false));
+            $benefit = strip_tags((string) $module->getTranslation('benefit_text', $locale, false));
+            if (! $this->matches($needle, $title.' '.$summary.' '.$benefit)) {
+                continue;
+            }
+            $pillarSlug = $module->pillar?->slug ?? 'services';
+            $results[] = [
+                'type' => 'service_module',
+                'title' => $title,
+                'excerpt' => Str::limit($summary ?: $benefit, 100),
+                'url' => route('services', ['locale' => $locale]).'/'.$pillarSlug.'/'.$module->slug,
+            ];
+        }
     }
 
     /**
