@@ -2,6 +2,9 @@
 
 namespace App\Providers\Filament;
 
+use App\Http\Middleware\EnsureApplicationIsInstalled;
+use BezhanSalleh\FilamentShield\FilamentShieldPlugin;
+use Devonab\FilamentEasyFooter\EasyFooterPlugin;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;
@@ -28,6 +31,10 @@ class AdminPanelProvider extends PanelProvider
             ->id('admin')
             ->path('admin')
             ->login()
+            ->brandName('SkyITup')
+            ->brandLogo(asset('assets/img/logo_text.png'))
+            ->brandLogoHeight('4rem')
+            ->favicon(asset('assets/img/logo.png'))
             ->colors([
                 'primary' => Color::Amber,
             ])
@@ -41,10 +48,18 @@ class AdminPanelProvider extends PanelProvider
                 Widgets\AccountWidget::class,
                 Widgets\FilamentInfoWidget::class,
             ])
-            ->plugin(
+            ->plugins([
                 SpatieLaravelTranslatablePlugin::make()
                     ->defaultLocales(config('app.available_locales', ['fr', 'en'])),
-            )
+                FilamentShieldPlugin::make(),
+                EasyFooterPlugin::make()
+                    ->withLinks([
+                        [
+                            'title' => 'Designed by Sdev',
+                            'url' => 'https://silasmas.com',
+                        ],
+                    ]),
+            ])
             ->middleware([
                 EncryptCookies::class,
                 AddQueuedCookiesToResponse::class,
@@ -55,6 +70,7 @@ class AdminPanelProvider extends PanelProvider
                 SubstituteBindings::class,
                 DisableBladeIconComponents::class,
                 DispatchServingFilamentEvent::class,
+                EnsureApplicationIsInstalled::class,
             ])
             ->authMiddleware([
                 Authenticate::class,

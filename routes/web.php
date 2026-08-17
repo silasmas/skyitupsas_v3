@@ -2,18 +2,44 @@
 
 use App\Http\Controllers\CareerController;
 use App\Http\Controllers\ContactMessageController;
+use App\Http\Controllers\InstallController;
 use App\Http\Controllers\NewsletterController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\SiteController;
 use Illuminate\Support\Facades\Route;
 
+/*
+|--------------------------------------------------------------------------
+| Wizard d'installation (accessible uniquement si non installé)
+|--------------------------------------------------------------------------
+*/
+Route::prefix('install')
+    ->middleware('install.not_installed')
+    ->group(function () {
+        Route::get('/{step?}', [InstallController::class, 'index'])
+            ->where('step', 'requirements|environment|database|finalize|complete')
+            ->name('install.index');
+        Route::post('/environment', [InstallController::class, 'saveEnvironment'])
+            ->name('install.environment');
+        Route::post('/database', [InstallController::class, 'runDatabase'])
+            ->name('install.database');
+        Route::post('/finish', [InstallController::class, 'finish'])
+            ->name('install.finish');
+        Route::post('/lock', [InstallController::class, 'lock'])
+            ->name('install.lock');
+    });
+
 Route::get('/', function () {
+    if (app()->environment('production')) {
+        return redirect('/admin');
+    }
+
     return redirect('/'.config('app.locale', 'fr'));
 });
 
 Route::prefix('{locale}')
     ->where(['locale' => 'fr|en'])
-    ->middleware(['locale'])
+    ->middleware(['locale', 'redirect.public.to.frontend'])
     ->group(function () {
         Route::get('/', [SiteController::class, 'home'])->name('home');
         Route::get('/a-propos', [SiteController::class, 'about'])->name('about');

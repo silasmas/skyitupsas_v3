@@ -40,4 +40,3 @@ trait HasTranslations
         return $this->resource->{$attribute};
     }
 }
-
