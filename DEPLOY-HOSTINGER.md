@@ -5,7 +5,7 @@ Domaines cibles :
 | Rôle | Domaine | Dépôt Git | Branche |
 |------|---------|-----------|---------|
 | Site public (Next.js) | `https://skyitupsas.org` | `silasmas/skyitupsas-front` | `main` |
-| Admin + API (Laravel) | `https://admin.skyitupsas.org` | `silasmas/skyitupsas_v3` | `backend` |
+| Admin + API (Laravel) | `https://admin.skyitupsas.org` | `silasmas/skyitupsas_v3` | `main` |
 
 ---
 
@@ -52,7 +52,7 @@ Activer **SSL** sur les deux domaines.
 ### Déploiement Git (hPanel ou MCP)
 
 - Dépôt : `https://github.com/silasmas/skyitupsas_v3.git`
-- Branche : **`backend`**
+- Branche : **`main`**
 - **Document root** : dossier `public/` du projet Laravel
 
 ### Commandes post-déploiement (terminal SSH / hPanel)
@@ -130,7 +130,7 @@ Liste mes sites Hostinger et mes domaines skyitupsas.org
 ```
 
 ```
-Configure le sous-domaine admin.skyitupsas.org pour le dépôt GitHub silasmas/skyitupsas_v3 branche backend, document root public/
+Configure le sous-domaine admin.skyitupsas.org pour le dépôt GitHub silasmas/skyitupsas_v3 branche main, document root public/
 ```
 
 ```

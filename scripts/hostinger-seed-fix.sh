@@ -4,7 +4,7 @@ set -uo pipefail
 
 ADMIN="${ADMIN_DIR:-/home/u514199474/domains/skyitupsas.org/public_html/admin}"
 LOG="${SEED_LOG:-/home/u514199474/domains/skyitupsas.org/seed-fix.log}"
-REPO_RAW="https://raw.githubusercontent.com/silasmas/skyitupsas_v3/backend"
+REPO_RAW="https://raw.githubusercontent.com/silasmas/skyitupsas_v3/main"
 ADMIN_EMAIL="${ADMIN_EMAIL:-admin@skyitupsas.org}"
 ADMIN_PASS="${ADMIN_PASS:-SkyITup2026!Admin}"
 

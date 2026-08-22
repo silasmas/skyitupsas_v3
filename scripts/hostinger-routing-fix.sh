@@ -4,7 +4,7 @@ set -uo pipefail
 
 ADMIN="${ADMIN_DIR:-/home/u514199474/domains/skyitupsas.org/public_html/admin}"
 LOG="${ROUTING_LOG:-/home/u514199474/domains/skyitupsas.org/routing-fix.log}"
-REPO_RAW="https://raw.githubusercontent.com/silasmas/skyitupsas_v3/backend"
+REPO_RAW="https://raw.githubusercontent.com/silasmas/skyitupsas_v3/main"
 
 log() {
   echo "[$(date -u +%Y-%m-%dT%H:%M:%SZ)] $*" | tee -a "$LOG"

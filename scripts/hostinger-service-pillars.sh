@@ -4,7 +4,7 @@ set -uo pipefail
 
 ADMIN="${ADMIN_DIR:-/home/u514199474/domains/skyitupsas.org/public_html/admin}"
 LOG="${PILLARS_LOG:-/home/u514199474/domains/skyitupsas.org/pillars-migrate.log}"
-TARBALL="https://codeload.github.com/silasmas/skyitupsas_v3/tar.gz/refs/heads/backend"
+TARBALL="https://codeload.github.com/silasmas/skyitupsas_v3/tar.gz/refs/heads/main"
 TMP="/tmp/skyitup-pillars-$$"
 
 log() {
@@ -29,7 +29,7 @@ PHP_BIN="$(phpBin)"
 
 cd "$ADMIN" || exit 1
 
-log "Téléchargement branche backend depuis GitHub..."
+log "Téléchargement branche main depuis GitHub..."
 mkdir -p "$TMP"
 curl -fsSL "$TARBALL" | tar -xz -C "$TMP" --strip-components=1
 

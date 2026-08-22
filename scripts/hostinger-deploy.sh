@@ -6,7 +6,7 @@ set -uo pipefail
 ADMIN="${ADMIN_DIR:-/home/u514199474/domains/skyitupsas.org/public_html/admin}"
 LOG="${DEPLOY_LOG:-/home/u514199474/domains/skyitupsas.org/deploy-backend.log}"
 MARKER_DIR="$ADMIN/.deploy"
-REPO_TARBALL="https://codeload.github.com/silasmas/skyitupsas_v3/tar.gz/refs/heads/backend"
+REPO_TARBALL="https://codeload.github.com/silasmas/skyitupsas_v3/tar.gz/refs/heads/main"
 ADMIN_EMAIL="${ADMIN_EMAIL:-admin@skyitupsas.org}"
 ADMIN_PASS="${ADMIN_PASS:-SkyITup2026!Admin}"
 

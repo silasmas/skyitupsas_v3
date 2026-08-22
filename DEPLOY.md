@@ -5,7 +5,7 @@ Architecture cible :
 | Composant | URL | Projet |
 |-----------|-----|--------|
 | Frontend Next.js | `https://skyitupsas.org` | `skyitupsas-front` |
-| Backend Laravel (API + Filament) | `https://admin.skyitupsas.org` | `skyitupsas_v3` (branche `backend`) |
+| Backend Laravel (API + Filament) | `https://admin.skyitupsas.org` | `skyitupsas_v3` (branche `main`) |
 
 ---
 
@@ -60,8 +60,8 @@ Voir aussi `skyitupsas-front/.env.production.example`.
 
 ```bash
 # Sur le serveur, dans le dossier du sous-domaine admin
-git clone -b backend https://github.com/silasmas/skyitupsas_v3.git .
-# ou : git pull origin backend
+git clone -b main https://github.com/silasmas/skyitupsas_v3.git .
+# ou : git pull origin main
 
 composer install --no-dev --optimize-autoloader
 cp .env.example .env
@@ -160,7 +160,7 @@ Contrôles :
 
 ```bash
 # Backend
-git pull origin backend
+git pull origin main
 composer install --no-dev --optimize-autoloader
 php artisan migrate --force
 php artisan optimize

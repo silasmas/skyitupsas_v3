@@ -42,7 +42,7 @@ if [[ -f "$ADMIN/vendor/autoload.php" ]]; then
   exit 0
 fi
 
-REPO_RAW="https://raw.githubusercontent.com/silasmas/skyitupsas_v3/backend"
+REPO_RAW="https://raw.githubusercontent.com/silasmas/skyitupsas_v3/main"
 
 cd "$ADMIN" || exit 1
 
