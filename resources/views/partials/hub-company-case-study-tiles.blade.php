@@ -1,9 +1,17 @@
 @php
-    /** @var \Illuminate\Support\Collection<int, \App\Models\Service>|null $homeServices */
-    $tiles = isset($homeServices) ? $homeServices->take(4) : collect();
+    /** @var \Illuminate\Support\Collection<int, \App\Models\ServicePillar>|null $homeServices */
+    $tiles = isset($homeServices) ? $homeServices->take(5) : collect();
+    $tileCount = max($tiles->count(), 1);
+    $widthClass = $tileCount >= 5 ? 'w-20percent lg:w-50percent sm:w-full' : 'w-25percent lg:w-50percent sm:w-full';
 @endphp
-@forelse ($tiles as $service)
-    <div class="w-25percent flex flex-auto p-10 lg:w-50percent sm:w-full">
+@forelse ($tiles as $pillar)
+    @php
+        $locale = app()->getLocale();
+        $title = $pillar->getTranslation('title', $locale);
+        $lead = $pillar->getTranslation('offer_summary', $locale, false)
+            ?: $pillar->getTranslation('client_challenge', $locale, false);
+    @endphp
+    <div class="{{ $widthClass }} flex flex-auto p-10">
         <div class="iconbox flex flex-grow-1 relative flex-col iconbox-default iconbox-contents-show-onhover py-25 mb-30 items-center bg-accent rounded-6 transition-bg hover:bg-secondary hover:text-secondary hover:inner-text-white lg:m-0" data-slideelement-onhover="true" data-slideelement-options="{ &quot;visibleElement&quot;:  &quot;.iconbox-icon-wrap, p, h3&quot;, &quot;hiddenElement&quot;:  &quot;.btn&quot;, &quot;alignMid&quot;:  true, &quot;triggerElement&quot;:  &quot;.iconbox&quot; }">
             <div class="iconbox-icon-wrap">
                 <div class="mb-25 iconbox-icon-container inline-flex w-40 text-40">
@@ -12,11 +20,11 @@
                     </svg>
                 </div>
             </div>
-            <h3 class="lqd-iconbox-heading text-center text-16 leading-1em mb-0 inner-text-white px-10">{{ $service->title }}</h3>
-            @if ($service->description)
-                <p class="text-13 text-center text-white-80 mb-10 px-10 m-0">{{ \Illuminate\Support\Str::limit(strip_tags((string) $service->description), 140) }}</p>
+            <h3 class="lqd-iconbox-heading text-center text-16 leading-1em mb-0 inner-text-white px-10">{{ $title }}</h3>
+            @if ($lead)
+                <p class="text-13 text-center text-white-80 mb-10 px-10 m-0">{{ \Illuminate\Support\Str::limit(strip_tags((string) $lead), 140) }}</p>
             @endif
-            <a href="{{ route('services').'#service-'.$service->slug }}" class="btn btn-naked btn-icon-right btn-hover-swp mt-em mb-0 items-center text-15 font-bold text-white hover:text-primary">
+            <a href="{{ route('services').'#'.$pillar->slug }}" class="btn btn-naked btn-icon-right btn-hover-swp mt-em mb-0 items-center text-15 font-bold text-white hover:text-primary">
                 <span class="btn-txt" data-text="{{ __('site.home_case_learn') }}">{{ __('site.home_case_learn') }}</span>
                 <span class="btn-icon text-16 tracking-0">
                     <i class="lqd-icn-ess icon-md-arrow-round-forward-2"></i>

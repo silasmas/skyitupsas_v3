@@ -57,9 +57,12 @@ class ServicePillarResource extends Resource
                         Forms\Components\TextInput::make('icon')
                             ->maxLength(255)
                             ->placeholder('heroicon-o-...'),
-                        Forms\Components\TextInput::make('featured_image')
-                            ->label('Image (chemin sous assets/img/)')
-                            ->maxLength(255),
+                        Forms\Components\FileUpload::make('featured_image')
+                            ->label('Image')
+                            ->image()
+                            ->directory('service-pillars')
+                            ->visibility('public')
+                            ->helperText('Ou laissez vide pour utiliser une image existante sous assets/img/.'),
                         Forms\Components\TextInput::make('sort_order')
                             ->numeric()
                             ->default(0),

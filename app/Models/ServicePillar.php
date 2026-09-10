@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Facades\Storage;
 use Spatie\Translatable\HasTranslations;
 
 /**
@@ -64,19 +65,37 @@ class ServicePillar extends Model
     }
 
     /**
-     * URL publique de l'image du pilier.
+     * URL publique de l'image du pilier (assets/img ou storage public).
      *
      * @return string|null URL absolue ou null
      */
     public function imageUrl(): ?string
     {
-        if (! $this->featured_image) {
+        return $this->resolveImageUrl($this->featured_image);
+    }
+
+    /**
+     * Résout une URL d'image depuis le chemin stocké en base.
+     *
+     * @param  string|null  $path  Chemin relatif
+     * @return string|null URL absolue ou null
+     */
+    protected function resolveImageUrl(?string $path): ?string
+    {
+        if (blank($path)) {
             return null;
         }
 
-        $path = public_path('assets/img/'.$this->featured_image);
-        if (file_exists($path)) {
-            return asset('assets/img/'.$this->featured_image);
+        if (str_starts_with($path, 'http://') || str_starts_with($path, 'https://')) {
+            return $path;
+        }
+
+        if (file_exists(public_path('assets/img/'.$path))) {
+            return asset('assets/img/'.$path);
+        }
+
+        if (Storage::disk('public')->exists($path)) {
+            return url(Storage::disk('public')->url($path));
         }
 
         return null;

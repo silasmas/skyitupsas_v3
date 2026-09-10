@@ -14,7 +14,7 @@
     $skyImg = static fn (string $key): string => asset('assets/img/'.config('sky.site_media.'.$key));
     $svcTitlebarPath = public_path('hub/assets/images/demo/company/services-2/titlebar.jpg');
     $svcTitlebarUrl = file_exists($svcTitlebarPath) ? asset('hub/assets/images/demo/company/services-2/titlebar.jpg') : $skyImg('about_titlebar');
-    $serviceList = $services ?? collect();
+    $pillarList = $pillars ?? collect();
 @endphp
 
 @section('before_content')
@@ -29,30 +29,36 @@
 @section('content')
 <section class="lqd-section services-content">
     <div class="container">
-        @if ($serviceList->isEmpty())
+        @if ($pillarList->isEmpty())
             <p class="text-center text-black-60 py-50 mb-0">{{ __('site.services_empty') }}</p>
         @else
+            <div class="row mb-40">
+                <div class="w-full">
+                    <p class="text-16 text-black-60 mb-0 max-w-3xl">{{ __('site.services_page_intro') }}</p>
+                </div>
+            </div>
             <div class="row">
                 <div class="w-30percent relative lg:w-full">
                     <div class="w-full sticky py-50 px-10 module-first lg:static">
                         <div class="w-full relative">
                             <div class="lqd-fancy-menu lqd-custom-menu pos-rel menu-items-has-fill lqd-menu-td-none module-list-bg">
                                 <ul class="reset-ul link-15 link-black sky-services-nav__list" role="tablist">
-                                    @foreach ($serviceList as $index => $svc)
+                                    @foreach ($pillarList as $index => $pillar)
                                         <li class="mb-5 items-center" role="presentation">
                                             <a
-                                                href="#"
+                                                href="#{{ $pillar->slug }}"
                                                 class="sky-services-nav-link w-full bg-accent font-bold @if ($index === 0) is-active @endif"
                                                 role="tab"
                                                 aria-selected="{{ $index === 0 ? 'true' : 'false' }}"
-                                                aria-controls="service-panel-{{ $svc->slug }}"
-                                                id="service-tab-{{ $svc->slug }}"
-                                                data-service-slug="{{ $svc->slug }}"
+                                                aria-controls="service-panel-{{ $pillar->slug }}"
+                                                id="service-tab-{{ $pillar->slug }}"
+                                                data-service-slug="{{ $pillar->slug }}"
                                             >
                                                 <span class="link-icon inline-flex hide-if-empty right-icon icon-push-to-edge" aria-hidden="true">
                                                     <i class="lqd-icn-ess icon-ion-ios-arrow-forward"></i>
                                                 </span>
-                                                {{ $svc->getTranslation('title', app()->getLocale()) }}
+                                                <span class="sky-services-nav-index">{{ $index + 1 }}.</span>
+                                                {{ $pillar->getTranslation('title', app()->getLocale()) }}
                                             </a>
                                         </li>
                                     @endforeach
@@ -98,23 +104,26 @@
 
                 <div class="w-70percent flex flex-col py-50 pr-10 pl-50 module-last lg:w-full lg:order-first lg:pl-15 lg:pr-15">
                     <div class="sky-services-panels-host w-full relative">
-                        @foreach ($serviceList as $index => $service)
+                        @foreach ($pillarList as $index => $pillar)
                             @php
                                 $locale = app()->getLocale();
-                                $title = $service->getTranslation('title', $locale);
-                                $subtitle = $service->getTranslation('subtitle', $locale);
-                                $imageUrl = $service->imageUrl();
-                                $lead = \Illuminate\Support\Str::limit(strip_tags((string) $service->getTranslation('description', $locale, false)), 220);
+                                $title = $pillar->getTranslation('title', $locale);
+                                $tagline = $pillar->getTranslation('tagline', $locale, false);
+                                $challenge = $pillar->getTranslation('client_challenge', $locale, false);
+                                $offer = $pillar->getTranslation('offer_summary', $locale, false);
+                                $imageUrl = $pillar->imageUrl() ?: $skyImg('about_titlebar');
+                                $modules = $pillar->activeModules;
                             @endphp
                             <article
-                                id="service-panel-{{ $service->slug }}"
+                                id="service-panel-{{ $pillar->slug }}"
                                 class="sky-service-panel w-full relative @if ($index === 0) is-active @endif"
                                 role="tabpanel"
-                                aria-labelledby="service-tab-{{ $service->slug }}"
+                                aria-labelledby="service-tab-{{ $pillar->slug }}"
+                                data-anchor="{{ $pillar->slug }}"
                                 @if ($index !== 0) hidden @endif
                             >
-                                <div class="w-full relative">
-                                    <div class="lqd-fb pos-rel lqd-fb-style-1 lqd-fb-style-1-3 lqd-fb-content-overlay lqd-fb-zoom-img-onhover border-radius-4 overflow-hidden h-pt-60 mb-65" data-inview="true">
+                                <div class="w-full relative" id="{{ $pillar->slug }}">
+                                    <div class="lqd-fb pos-rel lqd-fb-style-1 lqd-fb-style-1-3 lqd-fb-content-overlay lqd-fb-zoom-img-onhover border-radius-4 overflow-hidden h-pt-60 mb-40" data-inview="true">
                                         <div class="lqd-fb-inner lqd-overlay">
                                             <div class="lqd-fb-img lqd-overlay overflow-hidden">
                                                 <figure class="w-full h-full">
@@ -125,15 +134,13 @@
                                                 <div class="lqd-fb-bg lqd-overlay bg-transparent" style="background-image: linear-gradient(180deg, #181B3100 0%, #181B31 100%);"></div>
                                                 <div class="lqd-fb-hover-overlay lqd-overlay"></div>
                                                 <div class="lqd-fb-content-inner d-flex flex-col justify-between relative h-full w-full p-1/5rem">
-                                                    @if ($subtitle && trim($subtitle) !== '')
-                                                        <div class="lqd-fb-content-top">
-                                                            <h6 class="mt-0 mb-0 text-white">{{ $subtitle }}</h6>
-                                                        </div>
-                                                    @endif
+                                                    <div class="lqd-fb-content-top">
+                                                        <h6 class="mt-0 mb-0 text-white">{{ __('site.services_pillar_label') }} {{ $index + 1 }}</h6>
+                                                    </div>
                                                     <div class="lqd-fb-content-bottom">
                                                         <h2 class="lqd-fb__title mt-0 mb-2 font-semibold text-white">{{ $title }}</h2>
-                                                        @if ($lead !== '')
-                                                            <p class="mt-0 mb-3 text-white-80">{{ $lead }}</p>
+                                                        @if ($tagline)
+                                                            <p class="mt-0 mb-0 text-white-80 italic">« {{ $tagline }} »</p>
                                                         @endif
                                                     </div>
                                                 </div>
@@ -141,10 +148,17 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="w-full relative">
-                                    <h3 class="ld-fh-element relative mb-1em text-24">{{ $title }}</h3>
+
+                                <div class="w-full relative mb-30">
+                                    @if ($challenge)
+                                        <p class="mb-10 text-15"><strong>{{ __('site.services_client_challenge') }} :</strong> {{ $challenge }}</p>
+                                    @endif
+                                    @if ($offer)
+                                        <p class="mb-0 text-15"><strong>{{ __('site.services_our_offer') }} :</strong> {{ $offer }}</p>
+                                    @endif
                                 </div>
-                                @include('partials.service-body', ['service' => $service])
+
+                                @include('partials.service-pillar-body', ['pillar' => $pillar, 'modules' => $modules])
                             </article>
                         @endforeach
                     </div>
@@ -182,15 +196,31 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  var first = links[0];
-  if (first) {
-    showPanel(first.getAttribute('data-service-slug'));
+  var hash = (window.location.hash || '').replace(/^#/, '');
+  var initial = null;
+  if (hash) {
+    links.forEach(function (l) {
+      var slug = l.getAttribute('data-service-slug');
+      if (hash === slug || hash.indexOf(slug + '-') === 0) {
+        initial = slug;
+      }
+    });
+  }
+  if (!initial && links[0]) {
+    initial = links[0].getAttribute('data-service-slug');
+  }
+  if (initial) {
+    showPanel(initial);
   }
 
   links.forEach(function (link) {
     link.addEventListener('click', function (e) {
       e.preventDefault();
-      showPanel(link.getAttribute('data-service-slug'));
+      var slug = link.getAttribute('data-service-slug');
+      showPanel(slug);
+      if (history.replaceState) {
+        history.replaceState(null, '', '#' + slug);
+      }
     });
   });
 });

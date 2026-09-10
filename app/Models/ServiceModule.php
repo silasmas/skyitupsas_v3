@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Support\Facades\Storage;
 use Spatie\Translatable\HasTranslations;
 
 /**
@@ -54,19 +55,28 @@ class ServiceModule extends Model
     }
 
     /**
-     * URL publique de l'image du module.
+     * URL publique de l'image du module (assets/img ou storage public).
      *
      * @return string|null URL absolue ou null
      */
     public function imageUrl(): ?string
     {
-        if (! $this->featured_image) {
+        if (blank($this->featured_image)) {
             return null;
         }
 
-        $path = public_path('assets/img/'.$this->featured_image);
-        if (file_exists($path)) {
-            return asset('assets/img/'.$this->featured_image);
+        $path = $this->featured_image;
+
+        if (str_starts_with($path, 'http://') || str_starts_with($path, 'https://')) {
+            return $path;
+        }
+
+        if (file_exists(public_path('assets/img/'.$path))) {
+            return asset('assets/img/'.$path);
+        }
+
+        if (Storage::disk('public')->exists($path)) {
+            return url(Storage::disk('public')->url($path));
         }
 
         return null;

@@ -26,9 +26,11 @@ class ServiceModuleForm
                     Forms\Components\TextInput::make('icon')
                         ->maxLength(255)
                         ->placeholder('heroicon-o-...'),
-                    Forms\Components\TextInput::make('featured_image')
-                        ->label('Image (chemin sous assets/img/)')
-                        ->maxLength(255),
+                    Forms\Components\FileUpload::make('featured_image')
+                        ->label('Image')
+                        ->image()
+                        ->directory('service-modules')
+                        ->visibility('public'),
                     Forms\Components\TextInput::make('cta_delay')
                         ->label('Délai CTA')
                         ->placeholder('48h')

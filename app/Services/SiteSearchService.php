@@ -4,7 +4,6 @@ namespace App\Services;
 
 use App\Models\JobOffer;
 use App\Models\Realisation;
-use App\Models\Service;
 use App\Models\ServiceModule;
 use App\Models\ServicePillar;
 use Illuminate\Support\Str;
@@ -33,7 +32,6 @@ class SiteSearchService
 
         $this->collectServicePillars($needle, $locale, $results);
         $this->collectServiceModules($needle, $locale, $results);
-        $this->collectServices($needle, $locale, $results);
         $this->collectRealisations($needle, $locale, $results);
         $this->collectJobOffers($needle, $locale, $results);
         $this->collectStaticPages($needle, $locale, $results);
@@ -94,33 +92,7 @@ class SiteSearchService
                 'type' => 'service_module',
                 'title' => $title,
                 'excerpt' => Str::limit($summary ?: $benefit, 100),
-                'url' => route('services', ['locale' => $locale]).'/'.$pillarSlug.'/'.$module->slug,
-            ];
-        }
-    }
-
-    /**
-     * Ajoute les services correspondants.
-     *
-     * @param  string  $needle  Terme en minuscules
-     * @param  string  $locale  Langue
-     * @param  array<int, array<string, string>>  $results  Résultats cumulés
-     */
-    private function collectServices(string $needle, string $locale, array &$results): void
-    {
-        $items = Service::query()->where('is_active', true)->orderBy('sort_order')->get();
-
-        foreach ($items as $service) {
-            $title = (string) $service->getTranslation('title', $locale);
-            $description = strip_tags((string) $service->getTranslation('description', $locale, false));
-            if (! $this->matches($needle, $title.' '.$description)) {
-                continue;
-            }
-            $results[] = [
-                'type' => 'service',
-                'title' => $title,
-                'excerpt' => Str::limit($description, 100),
-                'url' => route('services', ['locale' => $locale]).'?service='.$service->slug,
+                'url' => route('services', ['locale' => $locale]).'#'.$pillarSlug.'-'.$module->slug,
             ];
         }
     }
