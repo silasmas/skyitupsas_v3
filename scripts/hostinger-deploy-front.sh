@@ -23,12 +23,14 @@ trap cleanup EXIT
 
 if [[ -f "$TOKEN_FILE" ]]; then
   API_TOKEN="$(tr -d '\r\n' < "$TOKEN_FILE")"
+elif [[ -n "${SKYITUP_HOSTINGER_API_TOKEN:-}" ]]; then
+  API_TOKEN="$SKYITUP_HOSTINGER_API_TOKEN"
 else
   API_TOKEN="${HOSTINGER_API_TOKEN:-}"
 fi
 
 if [[ -z "$API_TOKEN" ]]; then
-  log "ERROR: token API Hostinger introuvable ($TOKEN_FILE ou HOSTINGER_API_TOKEN)"
+  log "ERROR: token skyitupsas introuvable ($TOKEN_FILE, SKYITUP_HOSTINGER_API_TOKEN ou HOSTINGER_API_TOKEN)"
   exit 1
 fi
 
