@@ -23,7 +23,8 @@ set_env() {
   local key="$1"
   local value="$2"
   if grep -q "^${key}=" "$ENV_FILE"; then
-    perl -pi -e "s|^${key}=.*|${key}=${value}|" "$ENV_FILE"
+    # Remplace la ligne sans dépendre de perl (souvent absent sur mutualisé).
+    sed -i "s|^${key}=.*|${key}=${value}|" "$ENV_FILE"
   else
     printf '\n%s=%s\n' "$key" "$value" >> "$ENV_FILE"
   fi
