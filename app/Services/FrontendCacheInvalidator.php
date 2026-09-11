@@ -14,6 +14,9 @@ class FrontendCacheInvalidator
 {
     /**
      * Déclenche la revalidation (debounce 5 s pour éviter les rafales Filament).
+     *
+     * Appel HTTP synchrone : sur l'hébergement mutualisé il n'y a souvent
+     * pas de worker queue, donc un job `afterResponse` ne partirait jamais.
      */
     public function invalidate(): void
     {
@@ -28,26 +31,24 @@ class FrontendCacheInvalidator
             return;
         }
 
-        dispatch(function () use ($url, $secret): void {
-            try {
-                $response = Http::timeout(8)
-                    ->withToken($secret)
-                    ->acceptJson()
-                    ->post($url, [
-                        'tags' => ['cms'],
-                    ]);
+        try {
+            $response = Http::timeout(8)
+                ->withToken($secret)
+                ->acceptJson()
+                ->post($url, [
+                    'tags' => ['cms'],
+                ]);
 
-                if (! $response->successful()) {
-                    Log::warning('Revalidation frontend échouée', [
-                        'status' => $response->status(),
-                        'body' => $response->body(),
-                    ]);
-                }
-            } catch (Throwable $exception) {
-                Log::warning('Revalidation frontend impossible', [
-                    'message' => $exception->getMessage(),
+            if (! $response->successful()) {
+                Log::warning('Revalidation frontend échouée', [
+                    'status' => $response->status(),
+                    'body' => $response->body(),
                 ]);
             }
-        })->afterResponse();
+        } catch (Throwable $exception) {
+            Log::warning('Revalidation frontend impossible', [
+                'message' => $exception->getMessage(),
+            ]);
+        }
     }
 }
