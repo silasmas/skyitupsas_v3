@@ -70,8 +70,8 @@ if [[ -d "$STORAGE_BACKUP" ]]; then
   mv "$STORAGE_BACKUP" "$ADMIN/storage"
 fi
 
-log "Composer install..."
-HOME="$ADMIN" COMPOSER_HOME="$ADMIN/.composer" "$COMPOSER_BIN" install \
+log "Composer install (PHP: $PHP_BIN)..."
+HOME="$ADMIN" COMPOSER_HOME="$ADMIN/.composer" "$PHP_BIN" "$COMPOSER_BIN" install \
   --no-dev --optimize-autoloader --no-interaction >> "$LOG" 2>&1 || exit 1
 
 log "Migrations..."

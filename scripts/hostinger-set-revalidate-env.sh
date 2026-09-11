@@ -32,7 +32,22 @@ set_env() {
 set_env "FRONTEND_REVALIDATE_URL" "$URL"
 set_env "FRONTEND_REVALIDATE_SECRET" "$SECRET"
 
+phpBin() {
+  for candidate in \
+    /opt/alt/php83/usr/bin/php \
+    /opt/alt/php84/usr/bin/php \
+    /usr/bin/php83 \
+    php; do
+    if [[ -x "$candidate" ]]; then
+      echo "$candidate"
+      return
+    fi
+  done
+  echo "php"
+}
+
+PHP_BIN="$(phpBin)"
 cd "$ADMIN"
-php artisan config:clear || true
-php artisan optimize || true
-echo "FRONTEND_REVALIDATE configured"
+"$PHP_BIN" artisan config:clear || true
+"$PHP_BIN" artisan optimize || true
+echo "FRONTEND_REVALIDATE configured ($PHP_BIN)"
