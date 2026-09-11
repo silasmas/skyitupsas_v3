@@ -35,4 +35,18 @@ return [
         ],
     ],
 
+    /*
+    |--------------------------------------------------------------------------
+    | Frontend Next.js (invalidation du cache ISR)
+    |--------------------------------------------------------------------------
+    |
+    | Après une sauvegarde Filament, Laravel appelle POST /api/revalidate
+    | sur le front pour que les pages publiques reflètent le contenu à jour.
+    |
+    */
+    'frontend' => [
+        'revalidate_url' => env('FRONTEND_REVALIDATE_URL'),
+        'revalidate_secret' => env('FRONTEND_REVALIDATE_SECRET'),
+    ],
+
 ];
