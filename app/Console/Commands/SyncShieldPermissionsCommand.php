@@ -38,7 +38,6 @@ class SyncShieldPermissionsCommand extends Command
             Artisan::call('shield:generate', [
                 '--all' => true,
                 '--option' => 'permissions',
-                '--panel' => 'admin',
                 '--no-interaction' => true,
             ]);
 
