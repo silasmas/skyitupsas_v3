@@ -8,23 +8,12 @@
             {{ __('Découvrez comment utiliser le panneau d\'administration avec ce tutoriel interactif.') }}
         </x-slot>
 
-        <div
-            wire:ignore
-            class="flex items-center gap-4"
-            x-data
-        >
+        <div class="flex items-center gap-4">
             <x-filament::button
                 color="primary"
                 icon="heroicon-o-academic-cap"
-                tag="button"
+                wire:click="startTour"
                 type="button"
-                x-on:click.prevent="
-                    if (typeof window.startFilamentTour === 'function') {
-                        window.startFilamentTour();
-                    } else {
-                        alert(@js(__('tour.loadError')));
-                    }
-                "
             >
                 {{ __('Démarrer le tutoriel') }}
             </x-filament::button>

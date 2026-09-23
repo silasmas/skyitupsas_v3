@@ -41,7 +41,23 @@
     ];
 @endphp
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/shepherd.js@11.2.0/dist/css/shepherd.css" />
-<script src="https://cdn.jsdelivr.net/npm/shepherd.js@11.2.0/dist/js/shepherd.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/shepherd.js@11.2.0/dist/js/shepherd.min.js"></script>
+<style>
+    /* Au-dessus de la topbar / sidebar Filament */
+    .shepherd-modal-overlay-container,
+    .shepherd-element {
+        z-index: 100000 !important;
+    }
+    .shepherd-button {
+        background: #f59e0b !important;
+        border: none !important;
+        color: #111 !important;
+    }
+    .shepherd-button.shepherd-button-secondary {
+        background: #e5e7eb !important;
+        color: #111 !important;
+    }
+</style>
 <script>
 (function () {
     var t = @json($t);
