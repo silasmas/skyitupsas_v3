@@ -19,7 +19,10 @@ return [
     'super_admin' => [
         'enabled' => true,
         'name' => 'super_admin',
-        'define_via_gate' => false,
+        // true = le rôle super_admin bypasses toutes les policies via Gate::before
+        // (évite les menus Filament invisibles quand une resource est ajoutée
+        // après le dernier `shield:generate`, ex. ServiceModule).
+        'define_via_gate' => true,
         'intercept_gate' => 'before', // after
     ],
 
