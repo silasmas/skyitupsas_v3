@@ -18,7 +18,7 @@ class ServicePillarPolicy
      */
     public function viewAny(User $user): bool
     {
-        return $user->can('view_any_service_pillar');
+        return $user->can('view_any_service::pillar');
     }
 
     /**
@@ -27,7 +27,7 @@ class ServicePillarPolicy
      */
     public function view(User $user, ServicePillar $servicePillar): bool
     {
-        return $user->can('view_service_pillar');
+        return $user->can('view_service::pillar');
     }
 
     /**
@@ -35,7 +35,7 @@ class ServicePillarPolicy
      */
     public function create(User $user): bool
     {
-        return $user->can('create_service_pillar');
+        return $user->can('create_service::pillar');
     }
 
     /**
@@ -44,7 +44,7 @@ class ServicePillarPolicy
      */
     public function update(User $user, ServicePillar $servicePillar): bool
     {
-        return $user->can('update_service_pillar');
+        return $user->can('update_service::pillar');
     }
 
     /**
@@ -53,7 +53,7 @@ class ServicePillarPolicy
      */
     public function delete(User $user, ServicePillar $servicePillar): bool
     {
-        return $user->can('delete_service_pillar');
+        return $user->can('delete_service::pillar');
     }
 
     /**
@@ -61,7 +61,7 @@ class ServicePillarPolicy
      */
     public function deleteAny(User $user): bool
     {
-        return $user->can('delete_any_service_pillar');
+        return $user->can('delete_any_service::pillar');
     }
 
     /**
@@ -70,7 +70,7 @@ class ServicePillarPolicy
      */
     public function forceDelete(User $user, ServicePillar $servicePillar): bool
     {
-        return $user->can('force_delete_service_pillar');
+        return $user->can('force_delete_service::pillar');
     }
 
     /**
@@ -78,7 +78,7 @@ class ServicePillarPolicy
      */
     public function forceDeleteAny(User $user): bool
     {
-        return $user->can('force_delete_any_service_pillar');
+        return $user->can('force_delete_any_service::pillar');
     }
 
     /**
@@ -87,7 +87,7 @@ class ServicePillarPolicy
      */
     public function restore(User $user, ServicePillar $servicePillar): bool
     {
-        return $user->can('restore_service_pillar');
+        return $user->can('restore_service::pillar');
     }
 
     /**
@@ -95,7 +95,7 @@ class ServicePillarPolicy
      */
     public function restoreAny(User $user): bool
     {
-        return $user->can('restore_any_service_pillar');
+        return $user->can('restore_any_service::pillar');
     }
 
     /**
@@ -104,7 +104,7 @@ class ServicePillarPolicy
      */
     public function replicate(User $user, ServicePillar $servicePillar): bool
     {
-        return $user->can('replicate_service_pillar');
+        return $user->can('replicate_service::pillar');
     }
 
     /**
@@ -112,6 +112,6 @@ class ServicePillarPolicy
      */
     public function reorder(User $user): bool
     {
-        return $user->can('reorder_service_pillar');
+        return $user->can('reorder_service::pillar');
     }
 }
