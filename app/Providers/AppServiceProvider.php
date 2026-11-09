@@ -12,6 +12,7 @@ use App\Models\Service;
 use App\Models\ServiceModule;
 use App\Models\ServicePillar;
 use App\Models\TeamMember;
+use App\Models\Testimonial;
 use App\Services\FrontendCacheInvalidator;
 use App\Services\InstallService;
 use Illuminate\Database\Eloquent\Model;
@@ -35,6 +36,7 @@ class AppServiceProvider extends ServiceProvider
         ServiceModule::class,
         ServicePillar::class,
         TeamMember::class,
+        Testimonial::class,
     ];
 
     /**

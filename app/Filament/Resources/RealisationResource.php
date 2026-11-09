@@ -47,6 +47,7 @@ class RealisationResource extends Resource
                         Forms\Components\FileUpload::make('featured_image')
                             ->image()
                             ->directory('realisations')
+                            ->disk('public')
                             ->visibility('public'),
                         Forms\Components\TextInput::make('client')
                             ->maxLength(255),

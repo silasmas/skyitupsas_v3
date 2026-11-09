@@ -34,6 +34,7 @@ class DatabaseSeeder extends Seeder
             RealisationSeeder::class,
             PartnerSeeder::class,
             JobOfferSeeder::class,
+            TestimonialSeeder::class,
         ]);
     }
 }

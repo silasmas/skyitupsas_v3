@@ -14,6 +14,7 @@ use App\Http\Controllers\Api\ServiceController;
 use App\Http\Controllers\Api\ServiceModuleController;
 use App\Http\Controllers\Api\ServicePillarController;
 use App\Http\Controllers\Api\TeamMemberController;
+use App\Http\Controllers\Api\TestimonialController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -52,6 +53,9 @@ Route::prefix('v1')->name('api.v1.')->middleware('locale')->group(function () {
 
     Route::get('/partners', [PartnerController::class, 'index'])->name('partners.index');
     Route::get('/partners/{slug}', [PartnerController::class, 'show'])->name('partners.show');
+
+    Route::get('/testimonials', [TestimonialController::class, 'index'])->name('testimonials.index');
+    Route::get('/testimonials/{slug}', [TestimonialController::class, 'show'])->name('testimonials.show');
 
     Route::get('/job-offers', [JobOfferController::class, 'index'])->name('job-offers.index');
     Route::get('/job-offers/{slug}', [JobOfferController::class, 'show'])->name('job-offers.show');
