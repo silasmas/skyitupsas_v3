@@ -18,10 +18,13 @@ if (! hash_equals(OPS_SECRET, (string) ($_GET['s'] ?? ''))) {
 
 header('Content-Type: text/plain; charset=utf-8');
 
-// Live when copied to public/, or when served from public/_ops/public/ after git deploy.
-$fromOpsDeploy = str_contains(__DIR__, DIRECTORY_SEPARATOR.'public'.DIRECTORY_SEPARATOR.'_ops'.DIRECTORY_SEPARATOR);
-$admin = $fromOpsDeploy ? dirname(__DIR__, 3) : dirname(__DIR__);
-$patchRoot = $fromOpsDeploy ? dirname(__DIR__) : $admin.'/_patch';
+// Live in public/, or under public/_*/public/ after a Hostinger git deploy clone.
+$fromNestedDeploy = (bool) preg_match(
+  '#'.preg_quote(DIRECTORY_SEPARATOR.'public'.DIRECTORY_SEPARATOR, '#').'_[^'.preg_quote(DIRECTORY_SEPARATOR, '#').']+'.preg_quote(DIRECTORY_SEPARATOR.'public', '#').'$#',
+  __DIR__
+);
+$admin = $fromNestedDeploy ? dirname(__DIR__, 3) : dirname(__DIR__);
+$patchRoot = $fromNestedDeploy ? dirname(__DIR__) : $admin.'/_patch';
 $step = (string) ($_GET['step'] ?? 'all');
 $lines = [];
 
