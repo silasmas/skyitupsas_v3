@@ -151,11 +151,18 @@ function opsArtisan(string $admin): void
   $app = require $admin.'/bootstrap/app.php';
   $kernel = $app->make(Illuminate\Contracts\Console\Kernel::class);
 
+  $filamentPanelCache = $admin.'/bootstrap/cache/filament/panels/admin.php';
+  if (is_file($filamentPanelCache)) {
+    @unlink($filamentPanelCache);
+    opsLog('removed filament panel cache');
+  }
+
   $calls = [
     ['migrate', ['--force' => true]],
     ['db:seed', ['--class' => \Database\Seeders\TestimonialSeeder::class, '--force' => true]],
     ['app:sync-shield-permissions', []],
     ['optimize:clear', []],
+    ['filament:optimize-clear', []],
     ['permission:cache-reset', []],
   ];
 
