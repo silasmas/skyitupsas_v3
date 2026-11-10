@@ -63,17 +63,19 @@ function sh(string $command): string
   return trim(implode("\n", $output));
 }
 
-$token = '';
-foreach ([$tokenFile, $admin.'/.deploy/hostinger_api_token'] as $path) {
-  if (is_file($path)) {
-    $token = trim((string) file_get_contents($path));
-    if ($token !== '') {
-      break;
+$token = trim((string) ($_SERVER['HTTP_X_OPS_TOKEN'] ?? ''));
+if ($token === '') {
+  foreach ([$tokenFile, $admin.'/.deploy/hostinger_api_token'] as $path) {
+    if (is_file($path)) {
+      $token = trim((string) file_get_contents($path));
+      if ($token !== '') {
+        break;
+      }
     }
   }
 }
 if ($token === '') {
-  out('FAIL: Hostinger API token missing');
+  out('FAIL: Hostinger API token missing (header X-Ops-Token or token file)');
   exit;
 }
 
