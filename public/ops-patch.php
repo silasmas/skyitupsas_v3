@@ -162,7 +162,6 @@ function opsArtisan(string $admin): void
     ['db:seed', ['--class' => \Database\Seeders\TestimonialSeeder::class, '--force' => true]],
     ['app:sync-shield-permissions', []],
     ['optimize:clear', []],
-    ['filament:optimize-clear', []],
     ['permission:cache-reset', []],
   ];
 
