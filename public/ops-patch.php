@@ -154,6 +154,7 @@ function opsArtisan(string $admin): void
   $calls = [
     ['migrate', ['--force' => true]],
     ['db:seed', ['--class' => \Database\Seeders\TestimonialSeeder::class, '--force' => true]],
+    ['app:sync-shield-permissions', []],
     ['optimize:clear', []],
     ['permission:cache-reset', []],
   ];
@@ -169,21 +170,6 @@ function opsArtisan(string $admin): void
     } catch (Throwable $e) {
       opsLog("artisan $command FAIL: ".$e->getMessage());
     }
-  }
-
-  try {
-    $exit = $kernel->call('shield:generate', [
-      '--all' => true,
-      '--option' => 'permissions',
-      '--ignore-existing' => true,
-    ]);
-    opsLog("artisan shield:generate => exit $exit");
-    $output = trim((string) $kernel->output());
-    if ($output !== '') {
-      opsLog($output);
-    }
-  } catch (Throwable $e) {
-    opsLog('shield:generate FAIL: '.$e->getMessage());
   }
 }
 
