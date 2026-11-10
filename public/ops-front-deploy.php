@@ -22,8 +22,9 @@ $fromNested = (bool) preg_match('#/public/_[^/]+/public$#', str_replace('\\', '/
 $admin = $fromNested ? dirname(__DIR__, 3) : dirname(__DIR__);
 $domainArg = (string) ($_GET['domain'] ?? 'both');
 $zipName = 'skyitupsas-front-deploy-v16.zip';
-$frontTar = 'https://codeload.github.com/silasmas/skyitupsas-front/tar.gz/refs/heads/main';
+$frontTarApi = 'https://api.github.com/repos/silasmas/skyitupsas-front/tarball/main';
 $tokenFile = '/home/u514199474/domains/skyitupsas.org/.deploy/hostinger_api_token';
+$githubToken = trim((string) ($_SERVER['HTTP_X_GITHUB_TOKEN'] ?? ''));
 
 $targets = [];
 if ($domainArg === 'com' || $domainArg === 'both') {
@@ -83,7 +84,12 @@ $tmp = '/tmp/sky-front-'.getmypid();
 sh('rm -rf '.escapeshellarg($tmp));
 sh('mkdir -p '.escapeshellarg($tmp.'/src'));
 out('download...');
-sh('curl -fsSL '.escapeshellarg($frontTar).' -o '.escapeshellarg($tmp.'/front.tgz'));
+if ($githubToken === '') {
+  out('FAIL: missing X-Github-Token for private front repo');
+  exit;
+}
+$authHeader = 'Authorization: Bearer '.$githubToken;
+sh('curl -fsSL -H '.escapeshellarg($authHeader).' -H '.escapeshellarg('Accept: application/vnd.github+json').' -H '.escapeshellarg('User-Agent: skyitup-ops').' '.escapeshellarg($frontTarApi).' -o '.escapeshellarg($tmp.'/front.tgz'));
 sh('tar -xzf '.escapeshellarg($tmp.'/front.tgz').' -C '.escapeshellarg($tmp.'/src').' --strip-components=1');
 $extracted = $tmp.'/src';
 if (! is_file($extracted.'/package.json')) {
