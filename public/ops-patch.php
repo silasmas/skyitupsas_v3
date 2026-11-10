@@ -148,16 +148,16 @@ function opsArtisan(string $admin): void
   $app = require $admin.'/bootstrap/app.php';
   $kernel = $app->make(Illuminate\Contracts\Console\Kernel::class);
 
-  $commands = [
-    'migrate --force',
-    'db:seed --class=Database\\Seeders\\TestimonialSeeder --force',
-    'config:clear',
-    'permission:cache-reset',
+  $calls = [
+    ['migrate', ['--force' => true]],
+    ['db:seed', ['--class' => \Database\Seeders\TestimonialSeeder::class, '--force' => true]],
+    ['optimize:clear', []],
+    ['permission:cache-reset', []],
   ];
 
-  foreach ($commands as $command) {
+  foreach ($calls as [$command, $params]) {
     try {
-      $exit = $kernel->call($command);
+      $exit = $kernel->call($command, $params);
       opsLog("artisan $command => exit $exit");
       $output = trim((string) $kernel->output());
       if ($output !== '') {
@@ -172,7 +172,6 @@ function opsArtisan(string $admin): void
     $exit = $kernel->call('shield:generate', [
       '--all' => true,
       '--option' => 'permissions',
-      '--panel' => 'admin',
       '--ignore-existing' => true,
     ]);
     opsLog("artisan shield:generate => exit $exit");
