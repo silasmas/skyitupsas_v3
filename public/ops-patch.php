@@ -18,7 +18,10 @@ if (! hash_equals(OPS_SECRET, (string) ($_GET['s'] ?? ''))) {
 
 header('Content-Type: text/plain; charset=utf-8');
 
-$admin = dirname(__DIR__);
+// Live when copied to public/, or when served from public/_ops/public/ after git deploy.
+$fromOpsDeploy = str_contains(__DIR__, DIRECTORY_SEPARATOR.'public'.DIRECTORY_SEPARATOR.'_ops'.DIRECTORY_SEPARATOR);
+$admin = $fromOpsDeploy ? dirname(__DIR__, 3) : dirname(__DIR__);
+$patchRoot = $fromOpsDeploy ? dirname(__DIR__) : $admin.'/_patch';
 $step = (string) ($_GET['step'] ?? 'all');
 $lines = [];
 
@@ -79,11 +82,17 @@ function opsStorageLink(string $admin): void
  * @param  string  $admin  Absolute Laravel root path.
  * @return void
  */
-function opsSyncPatch(string $admin): void
+/**
+ * Copy app/database/routes from the patch root into the live admin tree.
+ *
+ * @param  string  $admin  Absolute Laravel root path.
+ * @param  string  $patch  Absolute path of the cloned patch sources.
+ * @return void
+ */
+function opsSyncPatch(string $admin, string $patch): void
 {
-  $patch = $admin.'/_patch';
   if (! is_dir($patch.'/app')) {
-    opsLog('FAIL: _patch/app missing');
+    opsLog('FAIL: patch app/ missing at '.$patch);
     return;
   }
 
@@ -176,11 +185,14 @@ function opsArtisan(string $admin): void
   }
 }
 
+opsLog('admin='.$admin);
+opsLog('patchRoot='.$patchRoot);
+
 if ($step === 'storage' || $step === 'all') {
   opsStorageLink($admin);
 }
 if ($step === 'sync' || $step === 'all') {
-  opsSyncPatch($admin);
+  opsSyncPatch($admin, $patchRoot);
 }
 if ($step === 'artisan' || $step === 'all') {
   opsArtisan($admin);
